@@ -1,2 +1,5 @@
 prefix: '&6&lBedWars'
 maps: []
+lobbycountdown: 60
+pregamecountdown: 10
+postgamecountdown: 15
