@@ -1,4 +1,4 @@
-package de.kidinthedark.bhwmcplugin.util;
+package de.kidinthedark.bedwarsplugin.util;
 
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
