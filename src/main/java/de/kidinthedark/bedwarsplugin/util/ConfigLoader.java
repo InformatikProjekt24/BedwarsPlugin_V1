@@ -33,6 +33,11 @@ public class ConfigLoader {
         }
 
         configFile = new FileBuilder(BedwarsPlugin.instance.getDataFolder().toPath().toString(), "config.yml");
+
+
+        ConfigVars.lobbycountdown = configFile.getInt("lobbycountdown");
+        ConfigVars.pregamecountdown = configFile.getInt("pregamecountdown");
+        ConfigVars.postgamecountdown = configFile.getInt("postgamecountdown");
     }
 
     public void saveConfig() {
