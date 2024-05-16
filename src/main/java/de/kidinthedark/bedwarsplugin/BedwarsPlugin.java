@@ -21,7 +21,10 @@ public final class BedwarsPlugin extends JavaPlugin {
         configLoader = new ConfigLoader();
         configLoader.loadConfig();
         getLogger().info("Config loaded!");
-
+        getLogger().info("Loading Gamemanager...");
+        gameManager = new GameManager();
+        gameManager.prepareServer();
+        getLogger().info("Gamemanager loaded!");
 
         UniversalSecondsGameTimer.startTimer();
     }
