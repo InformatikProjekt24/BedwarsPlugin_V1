@@ -3,3 +3,5 @@ maps: []
 lobbycountdown: 60
 pregamecountdown: 10
 postgamecountdown: 15
+maxplayers: 2
+lobbystartthreshold: 2
