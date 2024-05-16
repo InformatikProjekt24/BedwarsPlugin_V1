@@ -7,6 +7,7 @@ import java.util.HashMap;
 public class GameManager {
 
     private GameState gameState = GameState.PRELOBBY;
+    private boolean busy = false;
 
     private int lobbycountdown = ConfigVars.lobbycountdown;
     private int pregamecountdown = ConfigVars.pregamecountdown;
@@ -18,6 +19,8 @@ public class GameManager {
     private HashMap<String, Boolean> teamBeds = new HashMap<>();
 
     public void tick() {
+        if(busy) return;
+
         if(gameState.equals(GameState.LOBBY)) {
             if(!lobby_wait) {
                 lobbycountdown--;
@@ -28,10 +31,19 @@ public class GameManager {
         }
     }
 
+    public void prepareServer() {
+        busy = true;
+    }
+
     public void doPregameTasks() {
+
+        busy = true;
 
     }
 
 
-
+    //GETTERS
+    public GameState getGameState() {
+        return gameState;
+    }
 }
