@@ -2,6 +2,7 @@ package de.kidinthedark.bedwarsplugin;
 
 import de.kidinthedark.bedwarsplugin.game.GameManager;
 import de.kidinthedark.bedwarsplugin.game.UniversalSecondsGameTimer;
+import de.kidinthedark.bedwarsplugin.listeners.LoginListener;
 import de.kidinthedark.bedwarsplugin.util.ConfigLoader;
 import de.kidinthedark.bedwarsplugin.util.ConfigVars;
 import de.kidinthedark.bedwarsplugin.util.LanguageLoader;
@@ -41,7 +42,14 @@ public final class BedwarsPlugin extends JavaPlugin {
         mySQL.connect();
         createDefaultMysqlTables();
 
+
+        getLogger().info("Registering listeners...");
+        getServer().getPluginManager().registerEvents(new LoginListener(), instance);
+        getLogger().info("Listeners registered!");
+
         UniversalSecondsGameTimer.startTimer();
+
+        getLogger().info("Plugin loaded!");
     }
 
     @Override
