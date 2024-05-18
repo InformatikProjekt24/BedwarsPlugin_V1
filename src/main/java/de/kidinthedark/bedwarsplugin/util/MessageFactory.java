@@ -29,4 +29,10 @@ public class MessageFactory {
         }
     }
 
+    public static String getMessage(String message, LanguagePlaceholder placeholders, Player receiver) {
+        String lang = BedwarsPlugin.instance.languageLoader.getPlayerLanguage(receiver);
+        String messageToParse = BedwarsPlugin.instance.languageLoader.getMessage(lang, message);
+        return placeholders.replacePlaceholders(messageToParse);
+    }
+
 }
