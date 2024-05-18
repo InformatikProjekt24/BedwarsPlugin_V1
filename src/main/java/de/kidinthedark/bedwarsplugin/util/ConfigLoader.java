@@ -35,6 +35,16 @@ public class ConfigLoader {
         configFile = new FileBuilder(BedwarsPlugin.instance.getDataFolder().toPath().toString(), "config.yml");
 
         /* Load the config */
+        ConfigVars.mysqlUser = configFile.getString("mysql.user");
+        ConfigVars.mysqlPassword = configFile.getString("mysql.password");
+        ConfigVars.mysqlDatabase = configFile.getString("mysql.database");
+        ConfigVars.mysqlHost = configFile.getString("mysql.host");
+        ConfigVars.mysqlPort = configFile.getInt("mysql.port");
+        ConfigVars.allowPublicKeyRetrieval = configFile.getBoolean("allowPublicKeyRetrieval");
+        ConfigVars.autoReconnect = configFile.getBoolean("autoReconnect");
+        ConfigVars.useSSL = configFile.getBoolean("useSSL");
+
+        ConfigVars.prefix = configFile.getString("prefix");
         ConfigVars.defaultLanguage = configFile.getString("defaultLanguage");
         ConfigVars.availableLanguages = configFile.getSringList("langs");
         ConfigVars.languageMessages = configFile.getSringList("messages");
