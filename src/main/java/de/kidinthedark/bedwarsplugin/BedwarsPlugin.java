@@ -36,7 +36,7 @@ public final class BedwarsPlugin extends JavaPlugin {
         gameManager.prepareServer();
         getLogger().info("GameManager loaded!");
 
-        getLogger().info("Connecting mysql...");
+        getLogger().info("Connecting MySQL...");
         mySQL = new MySQL(ConfigVars.mysqlHost, ConfigVars.mysqlPort + "", ConfigVars.mysqlDatabase, ConfigVars.mysqlUser, ConfigVars.mysqlPassword, ConfigVars.useSSL, ConfigVars.autoReconnect, ConfigVars.allowPublicKeyRetrieval);
         mySQL.connect();
         createDefaultMysqlTables();
