@@ -50,6 +50,7 @@ langs:
 #Language messages
 messages:
   - "lobby_info_join"
+  - "login_join_disallow"
 
 #Installed maps
 maps: []
