@@ -24,6 +24,20 @@ lobbystartthreshold: 2
 
 defaultLanguage: "en_UK"
 
+#MySQL login data
+mysql:
+  host: localhost
+  port: '3306'
+  database: test
+  user: root
+  password: ''
+
+#ONLY MODIFY THESE IF YOU KNOW WHAT YOU'RE DOING
+useSSL: false
+autoReconnect: true
+allowPublicKeyRetrieval: true
+
+
 #DO NOT MODIFY BELOW THIS LINE
 
 #Installed languages
