@@ -9,6 +9,17 @@ public class ConfigVars {
     public static List<String> languageMessages;
     public static String defaultLanguage;
 
+    public static String mysqlUser;
+    public static String mysqlPassword;
+    public static String mysqlDatabase;
+    public static String mysqlHost;
+    public static int mysqlPort;
+    public static boolean allowPublicKeyRetrieval;
+    public static boolean autoReconnect;
+    public static boolean useSSL;
+
+    public static String prefix;
+
     public static int lobbycountdown;
     public static int pregamecountdown;
     public static int postgamecountdown;
