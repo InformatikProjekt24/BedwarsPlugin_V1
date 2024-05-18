@@ -2,19 +2,24 @@ package de.kidinthedark.bedwarsplugin.util;
 
 import de.kidinthedark.bedwarsplugin.BedwarsPlugin;
 import org.bukkit.Server;
+import org.bukkit.entity.Player;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.HashMap;
 
 public class LanguageLoader {
 
     private HashMap<String, Language> loadedLanguages;
+    public HashMap<String, String> playerLanguages;
 
     public LanguageLoader() {
         loadedLanguages = new HashMap<>();
+        playerLanguages = new HashMap<>();
     }
 
     public void loadLanguages() {
@@ -64,5 +69,25 @@ public class LanguageLoader {
     public String getMessage(String locale, String messageName) {
         return loadedLanguages.getOrDefault(locale, loadedLanguages.get("en_UK")).getMessage(messageName);
     }
+
+    public String getPlayerLanguage(Player p) {
+        if(playerLanguages.containsKey(p.getUniqueId().toString())) {
+            return playerLanguages.get(p.getUniqueId().toString());
+        }
+
+        ResultSet rs = BedwarsPlugin.instance.mySQL.getResult("SELECT lang FROM playerLanguages WHERE uuid='"+p.getUniqueId().toString()+"'");
+        String lang = ConfigVars.defaultLanguage;
+        try {
+            if(rs.next()) {
+                lang = rs.getString("lang");
+                playerLanguages.put(p.getUniqueId().toString(), lang);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return lang;
+    }
+
+    //TODO implement setPlayerLanguage
 
 }
