@@ -1,8 +1,7 @@
 package de.kidinthedark.bedwarsplugin.util;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import de.kidinthedark.bedwarsplugin.BedwarsPlugin;
-import org.bukkit.Bukkit;
-import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,14 +17,18 @@ public class ConfigLoader {
         //TODO FINISH
     }
 
+    @CanIgnoreReturnValue
     public void loadConfig() {
-        if (!BedwarsPlugin.instance.getDataFolder().exists())
+        if (!BedwarsPlugin.instance.getDataFolder().exists()) {
             BedwarsPlugin.instance.getDataFolder().mkdir();
+        }
+
 
         File file = new File(BedwarsPlugin.instance.getDataFolder(), "config.yml");
 
         if (!file.exists()) {
             try (InputStream in = BedwarsPlugin.instance.getResource("config.yml")) {
+                assert in != null;
                 Files.copy(in, file.toPath());
             } catch (IOException e) {
                 throw new RuntimeException(e);

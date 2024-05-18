@@ -4,16 +4,14 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 import java.util.Set;
 
 public class FileBuilder {
 
-    private YamlConfiguration c;
-    private File f;
+    private final YamlConfiguration c;
+    private final File f;
 
     public boolean exist() {
         return f.exists();
@@ -23,11 +21,11 @@ public class FileBuilder {
         this.f = new File(FilePath, FileName);
         this.c = YamlConfiguration.loadConfiguration(this.f);
     }
-    public void mkfile(InputStream is) {
+    public void mkfile() {
         try {
             f.createNewFile();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -79,7 +77,7 @@ public class FileBuilder {
         try {
             this.c.save(this.f);
         } catch (IOException e){
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return this;
     }

@@ -1,7 +1,6 @@
 package de.kidinthedark.bedwarsplugin.util;
 
 import de.kidinthedark.bedwarsplugin.BedwarsPlugin;
-import org.bukkit.Server;
 import org.bukkit.entity.Player;
 
 import java.io.File;
@@ -14,8 +13,8 @@ import java.util.HashMap;
 
 public class LanguageLoader {
 
-    private HashMap<String, Language> loadedLanguages;
-    public HashMap<String, String> playerLanguages;
+    private final HashMap<String, Language> loadedLanguages;
+    private final HashMap<String, String> playerLanguages;
 
     public LanguageLoader() {
         loadedLanguages = new HashMap<>();
@@ -25,7 +24,7 @@ public class LanguageLoader {
     public void loadLanguages() {
 
         BedwarsPlugin.instance.getLogger().info("[LanguageLoader] Loading languages...");
-
+        loadedLanguages.clear();
         if (!ConfigVars.availableLanguages.contains(ConfigVars.defaultLanguage)) {
             BedwarsPlugin.instance.getLogger().severe("[LanguageLoader] " + ConfigVars.defaultLanguage + " is the default language pack. Do not use the Server without it as errors will occur!");
         } else {
@@ -49,6 +48,7 @@ public class LanguageLoader {
             if (!file.exists()) {
                 if(BedwarsPlugin.instance.getResource("lang/" + lang + ".yml") != null) {
                     try (InputStream in = BedwarsPlugin.instance.getResource("lang/" + lang + ".yml")) {
+                        assert in != null;
                         Files.copy(in, file.toPath());
                     } catch (IOException e) {
                         throw new RuntimeException(e);
@@ -75,7 +75,7 @@ public class LanguageLoader {
             return playerLanguages.get(p.getUniqueId().toString());
         }
 
-        ResultSet rs = BedwarsPlugin.instance.mySQL.getResult("SELECT lang FROM playerLanguages WHERE uuid='"+p.getUniqueId().toString()+"'");
+        ResultSet rs = BedwarsPlugin.instance.mySQL.getResult("SELECT lang FROM playerLanguages WHERE uuid='"+p.getUniqueId()+"'");
         String lang = ConfigVars.defaultLanguage;
         try {
             if(rs.next()) {

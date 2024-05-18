@@ -6,7 +6,6 @@ import de.kidinthedark.bedwarsplugin.util.ConfigLoader;
 import de.kidinthedark.bedwarsplugin.util.ConfigVars;
 import de.kidinthedark.bedwarsplugin.util.LanguageLoader;
 import de.kidinthedark.bedwarsplugin.util.MySQL;
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class BedwarsPlugin extends JavaPlugin {
@@ -32,10 +31,10 @@ public final class BedwarsPlugin extends JavaPlugin {
         languageLoader = new LanguageLoader();
         languageLoader.loadLanguages();
 
-        getLogger().info("Loading Gamemanager...");
+        getLogger().info("Loading GameManager...");
         gameManager = new GameManager();
         gameManager.prepareServer();
-        getLogger().info("Gamemanager loaded!");
+        getLogger().info("GameManager loaded!");
 
         getLogger().info("Connecting mysql...");
         mySQL = new MySQL(ConfigVars.mysqlHost, ConfigVars.mysqlPort + "", ConfigVars.mysqlDatabase, ConfigVars.mysqlUser, ConfigVars.mysqlPassword, ConfigVars.useSSL, ConfigVars.autoReconnect, ConfigVars.allowPublicKeyRetrieval);
