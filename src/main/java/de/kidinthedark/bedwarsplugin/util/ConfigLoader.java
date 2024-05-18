@@ -14,7 +14,7 @@ public class ConfigLoader {
 
 
     public ConfigLoader() {
-        //TODO FINISH
+
     }
 
     @CanIgnoreReturnValue
@@ -47,6 +47,8 @@ public class ConfigLoader {
         ConfigVars.autoReconnect = configFile.getBoolean("autoReconnect");
         ConfigVars.useSSL = configFile.getBoolean("useSSL");
 
+        ConfigVars.mapsAvailable = configFile.getSringList("maps");
+
         ConfigVars.prefix = configFile.getString("prefix");
         ConfigVars.defaultLanguage = configFile.getString("defaultLanguage");
         ConfigVars.availableLanguages = configFile.getSringList("langs");
@@ -54,10 +56,6 @@ public class ConfigLoader {
         ConfigVars.lobbycountdown = configFile.getInt("lobbycountdown");
         ConfigVars.pregamecountdown = configFile.getInt("pregamecountdown");
         ConfigVars.postgamecountdown = configFile.getInt("postgamecountdown");
-    }
-
-    public void saveConfig() {
-
     }
 
 }
