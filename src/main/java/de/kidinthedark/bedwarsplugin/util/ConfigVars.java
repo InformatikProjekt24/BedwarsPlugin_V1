@@ -9,6 +9,8 @@ public class ConfigVars {
     public static List<String> languageMessages;
     public static String defaultLanguage;
 
+    public static List<String> mapsAvailable;
+
     public static String mysqlUser;
     public static String mysqlPassword;
     public static String mysqlDatabase;
