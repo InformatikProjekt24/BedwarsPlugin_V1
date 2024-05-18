@@ -1,5 +1,7 @@
 package de.kidinthedark.bedwarsplugin.util;
 
+import org.bukkit.ChatColor;
+
 import java.util.HashMap;
 
 public class LanguagePlaceholder {
@@ -19,7 +21,7 @@ public class LanguagePlaceholder {
         for(String placeholder : placeholders.keySet()) {
             message = message.replaceAll("{" + placeholder + "}", placeholders.get("placeholder").toString());
         }
-        return message;
+        return ChatColor.translateAlternateColorCodes('&', message);
     }
 
 }

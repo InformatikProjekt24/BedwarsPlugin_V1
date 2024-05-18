@@ -1,6 +1,7 @@
 package de.kidinthedark.bedwarsplugin.util;
 
 import de.kidinthedark.bedwarsplugin.BedwarsPlugin;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.io.File;
@@ -64,6 +65,11 @@ public class LanguageLoader {
             }
 
         }
+
+        if(!loadedLanguages.containsKey(ConfigVars.defaultLanguage)) {
+            BedwarsPlugin.instance.getLogger().severe("[LanguageLoader] The default language pack could not be loaded! Shutting down...");
+            Bukkit.shutdown();
+        }
     }
 
     public String getMessage(String locale, String messageName) {
@@ -75,15 +81,18 @@ public class LanguageLoader {
             return playerLanguages.get(p.getUniqueId().toString());
         }
 
-        ResultSet rs = BedwarsPlugin.instance.mySQL.getResult("SELECT lang FROM playerLanguages WHERE uuid='"+p.getUniqueId()+"'");
         String lang = ConfigVars.defaultLanguage;
-        try {
-            if(rs.next()) {
-                lang = rs.getString("lang");
-                playerLanguages.put(p.getUniqueId().toString(), lang);
+
+        if(BedwarsPlugin.instance.mySQL.isConnected()) {
+            ResultSet rs = BedwarsPlugin.instance.mySQL.getResult("SELECT lang FROM playerLanguages WHERE uuid='"+p.getUniqueId()+"'");
+            try {
+                if(rs.next()) {
+                    lang = rs.getString("lang");
+                    playerLanguages.put(p.getUniqueId().toString(), lang);
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
             }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
         }
         return lang;
     }
