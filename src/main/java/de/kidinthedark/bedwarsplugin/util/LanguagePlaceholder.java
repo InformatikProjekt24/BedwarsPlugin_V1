@@ -1,8 +1,6 @@
 package de.kidinthedark.bedwarsplugin.util;
 
-import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.ChatColor;
-import org.bukkit.entity.Player;
 
 import java.util.HashMap;
 

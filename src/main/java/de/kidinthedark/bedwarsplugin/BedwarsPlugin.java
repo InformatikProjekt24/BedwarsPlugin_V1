@@ -49,7 +49,6 @@ public final class BedwarsPlugin extends JavaPlugin {
         mySQL.connect();
         createDefaultMysqlTables();
 
-
         getLogger().info("Registering listeners...");
         getServer().getPluginManager().registerEvents(new LoginListener(), instance);
         getLogger().info("Listeners registered!");
