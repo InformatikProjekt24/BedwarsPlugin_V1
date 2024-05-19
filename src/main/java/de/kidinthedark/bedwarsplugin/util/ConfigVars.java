@@ -1,5 +1,7 @@
 package de.kidinthedark.bedwarsplugin.util;
 
+import org.bukkit.Location;
+
 import java.util.List;
 
 public class ConfigVars {
@@ -8,6 +10,10 @@ public class ConfigVars {
     public static List<String> availableLanguages;
     public static List<String> languageMessages;
     public static String defaultLanguage;
+
+    public static Location lobbySpawnLocation;
+    public static int maxPlayers;
+    public static int playersRequired;
 
     public static List<String> mapsAvailable;
 
