@@ -74,7 +74,7 @@ public class LanguageLoader {
     }
 
     public String getMessage(String locale, String messageName) {
-        return loadedLanguages.getOrDefault(locale, loadedLanguages.get("en_UK")).getMessage(messageName);
+        return loadedLanguages.getOrDefault(locale, loadedLanguages.get(ConfigVars.defaultLanguage)).getMessage(messageName);
     }
 
     public String getPlayerLanguage(Player p) {

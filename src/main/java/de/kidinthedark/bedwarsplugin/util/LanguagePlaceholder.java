@@ -1,6 +1,8 @@
 package de.kidinthedark.bedwarsplugin.util;
 
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 
 import java.util.HashMap;
 
@@ -18,10 +20,18 @@ public class LanguagePlaceholder {
         placeholders.replace(placeholderName, value);
     }
 
-    public String replacePlaceholders(String message) {
+    public String replacePlaceholders(String locale, String message) {
+
         for(String placeholder : placeholders.keySet()) {
-            message = message.replaceAll("{" + placeholder + "}", placeholders.get("placeholder").toString());
+
+            if(placeholder.equals("timeUnit")) {
+                message = message.replaceAll("\\{" + placeholder + "}", MessageFactory.getTimeUnit(locale, placeholders.get(placeholder).toString()));
+                continue;
+            }
+
+            message = message.replaceAll("\\{" + placeholder + "}", placeholders.get(placeholder).toString());
         }
+
         return ChatColor.translateAlternateColorCodes('&', message);
     }
 
