@@ -8,6 +8,9 @@ game_start_success: "&aGame start initiated!"
 game_start_fail: "&cGame is not ready or is already running!"
 
 command_no_permission: "&cYou do not have the permission to execute this command!"
+command_language_usage: "&cUsage: /language <locale>"
+command_language_success: "&aYour language was set to {language}"
+command_language_missing: "&cThe language {language} could not be found!"
 
 util_unit_second: "second"
 util_unit_seconds: "seconds"

@@ -56,6 +56,9 @@ messages:
   - "game_start_success"
   - "game_start_fail"
   - "command_no_permission"
+  - "command_language_usage"
+  - "command_language_success"
+  - "command_language_missing"
   - "util_unit_second"
   - "util_unit_seconds"
 #Lobby spawn
