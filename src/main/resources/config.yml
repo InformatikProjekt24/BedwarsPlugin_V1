@@ -53,9 +53,11 @@ messages:
   - "lobby_info_countdown"
   - "login_join_disallow"
   - "login_join_full"
+  - "game_start_success"
+  - "game_start_fail"
+  - "command_no_permission"
   - "util_unit_second"
   - "util_unit_seconds"
-
 #Lobby spawn
 lobby:
   world: world

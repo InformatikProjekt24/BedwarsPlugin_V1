@@ -4,5 +4,10 @@ lobby_info_countdown: "&7The game starts in {time} {timeUnit}"
 login_join_disallow: "&cYou can't join this server right now!"
 login_join_full: "&cThis game is full!"
 
+game_start_success: "&aGame start initiated!"
+game_start_fail: "&cGame is not ready or is already running!"
+
+command_no_permission: "&cYou do not have the permission to execute this command!"
+
 util_unit_second: "second"
 util_unit_seconds: "seconds"
