@@ -50,7 +50,8 @@ langs:
 #Language messages
 messages:
   - "lobby_info_join"
-  - "lobby_info_countdown"
+  - "lobby_info_countdown_start"
+  - "lobby_info_countdown_end"
   - "login_join_disallow"
   - "login_join_full"
   - "game_start_success"
@@ -61,6 +62,7 @@ messages:
   - "command_language_missing"
   - "util_unit_second"
   - "util_unit_seconds"
+
 #Lobby spawn
 lobby:
   world: world

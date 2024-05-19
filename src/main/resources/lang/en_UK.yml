@@ -1,5 +1,6 @@
 lobby_info_join: "&7You've joined a &6BedWars &7lobby!"
-lobby_info_countdown: "&7The game starts in {time} {timeUnit}"
+lobby_info_countdown_start: "&7The game starts in {time} {timeUnit}"
+lobby_info_countdown_end: "&7The game ends in {time} {timeUnit}"
 
 login_join_disallow: "&cYou can't join this server right now!"
 login_join_full: "&cThis game is full!"
