@@ -11,6 +11,7 @@ import java.nio.file.Files;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 
 @SuppressWarnings("ResultOfMethodCallIgnored")
 public class LanguageLoader {
@@ -106,6 +107,10 @@ public class LanguageLoader {
         if(!getPlayerLanguage(p).equals(lang)) {
             BedwarsPlugin.instance.mySQL.update("UPDATE playerLanguages SET lang='"+lang+"' WHERE uuid='"+p.getUniqueId()+"'");
         }
+    }
+
+    public List<String> getLocales() {
+        return loadedLanguages.keySet().stream().toList();
     }
 
 }
