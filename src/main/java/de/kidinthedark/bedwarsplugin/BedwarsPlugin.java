@@ -3,6 +3,7 @@ package de.kidinthedark.bedwarsplugin;
 import de.kidinthedark.bedwarsplugin.commands.StartCommand;
 import de.kidinthedark.bedwarsplugin.game.GameManager;
 import de.kidinthedark.bedwarsplugin.game.UniversalSecondsGameTimer;
+import de.kidinthedark.bedwarsplugin.listeners.JoinListener;
 import de.kidinthedark.bedwarsplugin.listeners.LoginListener;
 import de.kidinthedark.bedwarsplugin.map.MapManager;
 import de.kidinthedark.bedwarsplugin.util.*;
@@ -52,6 +53,7 @@ public final class BedwarsPlugin extends JavaPlugin {
 
         getLogger().info("Registering listeners...");
         getServer().getPluginManager().registerEvents(new LoginListener(), instance);
+        getServer().getPluginManager().registerEvents(new JoinListener(), instance);
         getLogger().info("Listeners registered!");
 
         getLogger().info("Registering commands...");
