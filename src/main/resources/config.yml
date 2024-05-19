@@ -10,7 +10,7 @@
 #######################################
 
 #The chat prefix for the plugin
-prefix: '&6&lBedWars'
+prefix: '&6&lBedWars &8»'
 
 #How long the plugin should wait before proceeding to the next game phase in seconds
 lobbycountdown: 60
