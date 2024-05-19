@@ -18,8 +18,7 @@ public class StartCommand implements CommandExecutor {
 
         LanguagePlaceholder placeholder = new LanguagePlaceholder();
 
-        if (sender instanceof Player) {
-            Player player = (Player) sender;
+        if (sender instanceof Player player) {
             if (player.hasPermission("bedwars.start")) {
                 if(BedwarsPlugin.instance.gameManager.startLobbyCountdown()) {
                     MessageFactory.sendMessage("game_start_success", placeholder, player);
