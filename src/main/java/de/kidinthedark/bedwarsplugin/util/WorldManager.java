@@ -28,6 +28,7 @@ public class WorldManager {
         }
     }
 
+    @SuppressWarnings("resource")
     public static void copyDirectory(String sourceDirectoryLocation, String destinationDirectoryLocation) throws IOException {
         Files.walk(Paths.get(sourceDirectoryLocation))
                 .forEach(source -> {

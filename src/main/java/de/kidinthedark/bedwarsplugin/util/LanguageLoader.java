@@ -34,7 +34,7 @@ public class LanguageLoader {
         }
 
         if(!ConfigVars.availableLanguages.contains(ConfigVars.defaultLanguage)) {
-            String nextDefault = ConfigVars.availableLanguages.get(0);
+            String nextDefault = ConfigVars.availableLanguages.getFirst();
             BedwarsPlugin.instance.getLogger().severe("[LanguageLoader] Selected default language " + ConfigVars.defaultLanguage + " is not available, defaulting to " + nextDefault);
             ConfigVars.defaultLanguage = nextDefault;
         }
