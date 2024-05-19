@@ -1,7 +1,6 @@
 package de.kidinthedark.bedwarsplugin.listeners;
 
 import de.kidinthedark.bedwarsplugin.BedwarsPlugin;
-import de.kidinthedark.bedwarsplugin.game.GameState;
 import de.kidinthedark.bedwarsplugin.util.ConfigVars;
 import de.kidinthedark.bedwarsplugin.util.LanguagePlaceholder;
 import de.kidinthedark.bedwarsplugin.util.MessageFactory;
