@@ -50,7 +50,20 @@ langs:
 #Language messages
 messages:
   - "lobby_info_join"
+  - "lobby_info_countdown"
   - "login_join_disallow"
+  - "login_join_full"
+  - "util_unit_second"
+  - "util_unit_seconds"
+
+#Lobby spawn
+lobby:
+  world: world
+  x: 0
+  y: 100
+  z: 0
+  yaw: 0
+  pit: 0
 
 #Installed maps
 maps: []
