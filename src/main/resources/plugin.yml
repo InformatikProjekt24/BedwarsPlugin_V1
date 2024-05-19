@@ -1,5 +1,20 @@
 name: BedwarsPlugin
 version: '${version}'
 main: de.kidinthedark.bedwarsplugin.BedwarsPlugin
+load: POSTWORLD
 api-version: '1.20'
-load: STARTUP
+
+description: A plugin to play the popular bedwars minigame
+
+website: https://github.com/InformatikProjekt24/BedwarsPlugin_V1
+
+authors:
+  - "KidInTheDark"
+  - "Raven"
+
+commands:
+  start:
+    description: Force start the game through a command
+
+
+
