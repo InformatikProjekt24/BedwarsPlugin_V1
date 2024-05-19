@@ -1,7 +1,6 @@
 package de.kidinthedark.bedwarsplugin.util;
 
 import de.kidinthedark.bedwarsplugin.BedwarsPlugin;
-import org.apache.logging.log4j.message.Message;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
