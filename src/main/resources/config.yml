@@ -28,7 +28,7 @@ defaultLanguage: "en_UK"
 mysql:
   host: localhost
   port: 3306
-  database: test
+  database: bedwars
   user: root
   password: ''
 

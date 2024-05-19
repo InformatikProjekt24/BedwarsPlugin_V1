@@ -1,14 +1,15 @@
 package de.kidinthedark.bedwarsplugin;
 
+import de.kidinthedark.bedwarsplugin.commands.StartCommand;
 import de.kidinthedark.bedwarsplugin.game.GameManager;
 import de.kidinthedark.bedwarsplugin.game.UniversalSecondsGameTimer;
 import de.kidinthedark.bedwarsplugin.listeners.LoginListener;
 import de.kidinthedark.bedwarsplugin.map.MapManager;
 import de.kidinthedark.bedwarsplugin.util.*;
-import org.bukkit.WorldCreator;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.IOException;
+import java.util.Objects;
+
 
 public final class BedwarsPlugin extends JavaPlugin {
 
@@ -52,6 +53,10 @@ public final class BedwarsPlugin extends JavaPlugin {
         getLogger().info("Registering listeners...");
         getServer().getPluginManager().registerEvents(new LoginListener(), instance);
         getLogger().info("Listeners registered!");
+
+        getLogger().info("Registering commands...");
+        Objects.requireNonNull(getCommand("start")).setExecutor(new StartCommand());
+        getLogger().info("Commands registered!");
 
         UniversalSecondsGameTimer.startTimer();
 
