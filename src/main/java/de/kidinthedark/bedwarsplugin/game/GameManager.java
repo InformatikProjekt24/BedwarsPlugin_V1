@@ -10,7 +10,7 @@ import java.util.HashMap;
 
 public class GameManager {
 
-    private GameState gameState = GameState.PRELOBBY;
+    private GameState gameState = GameState.LOBBY;
     private boolean busy = false;
 
     private int lobbycountdown = ConfigVars.lobbycountdown;
@@ -62,7 +62,6 @@ public class GameManager {
             case POSTLOBBY:
 
                 break;
-
         }
 
     }
