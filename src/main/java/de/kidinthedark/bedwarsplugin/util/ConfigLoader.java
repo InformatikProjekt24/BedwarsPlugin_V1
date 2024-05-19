@@ -2,13 +2,17 @@ package de.kidinthedark.bedwarsplugin.util;
 
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import de.kidinthedark.bedwarsplugin.BedwarsPlugin;
+import net.md_5.bungee.api.ChatColor;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 
-@SuppressWarnings("ResultOfMethodCallIgnored")
+
+@SuppressWarnings({"ResultOfMethodCallIgnored", "deprecation"})
 public class ConfigLoader {
 
 
@@ -37,6 +41,7 @@ public class ConfigLoader {
         FileBuilder configFile = new FileBuilder(BedwarsPlugin.instance.getDataFolder().toPath().toString(), "config.yml");
 
         /* Load the config */
+        //MySQL
         ConfigVars.mysqlUser = configFile.getString("mysql.user");
         ConfigVars.mysqlPassword = configFile.getString("mysql.password");
         ConfigVars.mysqlDatabase = configFile.getString("mysql.database");
@@ -46,9 +51,20 @@ public class ConfigLoader {
         ConfigVars.autoReconnect = configFile.getBoolean("autoReconnect");
         ConfigVars.useSSL = configFile.getBoolean("useSSL");
 
+        //Map loading
         ConfigVars.mapsAvailable = configFile.getSringList("maps");
+        String lobbyWorld = configFile.getString("lobby.world");
+        double lobbyX = configFile.getDouble("lobby.x");
+        double lobbyY = configFile.getDouble("lobby.y");
+        double lobbyZ = configFile.getDouble("lobby.z");
+        float yaw = (float) configFile.getDouble("yaw");
+        float pitch = (float) configFile.getDouble("pitch");
+        ConfigVars.lobbySpawnLocation = new Location(Bukkit.getWorld(lobbyWorld), lobbyX, lobbyY, lobbyZ, yaw, pitch);
 
-        ConfigVars.prefix = configFile.getString("prefix");
+        ConfigVars.playersRequired = configFile.getInt("lobbystartthreshold");
+        ConfigVars.maxPlayers = configFile.getInt("maxplayers");
+
+        ConfigVars.prefix = ChatColor.translateAlternateColorCodes('&', configFile.getString("prefix"));
         ConfigVars.defaultLanguage = configFile.getString("defaultLanguage");
         ConfigVars.availableLanguages = configFile.getSringList("langs");
         ConfigVars.languageMessages = configFile.getSringList("messages");
