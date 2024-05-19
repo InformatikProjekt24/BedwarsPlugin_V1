@@ -30,10 +30,12 @@ public class GameManager {
             case LOBBY:
                 if((!lobby_wait || Bukkit.getOnlinePlayers().size() >= ConfigVars.playersRequired) && lobbycountdown != 0) {
                     lobbycountdown--;
+
                     LanguagePlaceholder placeholder = new LanguagePlaceholder();
                     placeholder.updatePlaceholder("time", String.valueOf(lobbycountdown));
                     placeholder.updatePlaceholder("timeUnit", (lobbycountdown==1) ? "util_unit_second" : "util_unit_seconds");
-                    MessageFactory.broadcastMessage("lobby_info_countdown", placeholder);
+
+                    doCountdown(placeholder, "start");
                 }
                 if(lobbycountdown == 0) {
                     doPregameTasks();
@@ -57,13 +59,31 @@ public class GameManager {
                 }
                 break;
             case ENDLOBBY:
+                lobbycountdown--;
 
+                LanguagePlaceholder placeholder = new LanguagePlaceholder();
+                placeholder.updatePlaceholder("time", String.valueOf(lobbycountdown));
+                placeholder.updatePlaceholder("timeUnit", (lobbycountdown==1) ? "util_unit_second" : "util_unit_seconds");
+
+                doCountdown(placeholder, "end");
                 break;
             case POSTLOBBY:
 
                 break;
         }
 
+    }
+
+    private void doCountdown(LanguagePlaceholder placeholder, String state) {
+        switch (lobbycountdown) {
+            case 30:
+            case 15:
+                MessageFactory.broadcastMessage("lobby_info_countdown", placeholder);
+                break;
+            default:
+                if(lobbycountdown<=10) MessageFactory.broadcastMessage("lobby_info_countdown_" + state, placeholder);
+                break;
+        }
     }
 
     public boolean startLobbyCountdown() {
@@ -96,6 +116,7 @@ public class GameManager {
     public void doEndlobbyTasks() {
         busy = true;
         gameState = GameState.ENDLOBBY;
+        lobbycountdown = ConfigVars.lobbycountdown/2;
     }
 
     public void tickIngameTasks() {
