@@ -85,7 +85,7 @@ public class GameManager {
     }
 
     public void prepareGame() {
-
+        busy = true;
     }
 
     public void doPostgameTasks() {
