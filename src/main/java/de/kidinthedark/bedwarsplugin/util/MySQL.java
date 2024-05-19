@@ -18,7 +18,7 @@ public class MySQL {
     private final boolean autoReconnect;
     private final boolean allowPublicKeyRetrieval;
     private java.sql.Connection con;
-    private final String pre = " [MySQL] ";
+    private final String pre = "[MySQL] ";
 
     public MySQL(String host, String port, String database, String user, String password, boolean ssl,
                  boolean autoReconnect, boolean allowPublicKeyRetrieval) {
