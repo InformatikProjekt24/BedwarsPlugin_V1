@@ -3,6 +3,7 @@ package de.kidinthedark.bedwarsplugin;
 import de.kidinthedark.bedwarsplugin.game.GameManager;
 import de.kidinthedark.bedwarsplugin.game.UniversalSecondsGameTimer;
 import de.kidinthedark.bedwarsplugin.listeners.LoginListener;
+import de.kidinthedark.bedwarsplugin.map.MapManager;
 import de.kidinthedark.bedwarsplugin.util.ConfigLoader;
 import de.kidinthedark.bedwarsplugin.util.ConfigVars;
 import de.kidinthedark.bedwarsplugin.util.LanguageLoader;
@@ -18,6 +19,7 @@ public final class BedwarsPlugin extends JavaPlugin {
     public ConfigLoader configLoader;
     public GameManager gameManager;
     public LanguageLoader languageLoader;
+    public MapManager mapManager;
 
     @Override
     public void onEnable() {
@@ -36,6 +38,11 @@ public final class BedwarsPlugin extends JavaPlugin {
         gameManager = new GameManager();
         gameManager.prepareServer();
         getLogger().info("GameManager loaded!");
+
+        getLogger().info("Loading MapManager...");
+        mapManager = new MapManager();
+        mapManager.prepare();
+        getLogger().info("MapManager loaded!");
 
         getLogger().info("Connecting MySQL...");
         mySQL = new MySQL(ConfigVars.mysqlHost, ConfigVars.mysqlPort + "", ConfigVars.mysqlDatabase, ConfigVars.mysqlUser, ConfigVars.mysqlPassword, ConfigVars.useSSL, ConfigVars.autoReconnect, ConfigVars.allowPublicKeyRetrieval);
