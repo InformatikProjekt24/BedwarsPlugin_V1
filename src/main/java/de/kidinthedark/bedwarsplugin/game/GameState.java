@@ -8,6 +8,7 @@ public enum GameState {
     INGAME,
     POSTGAME,
     ENDLOBBY,
-    POSTLOBBY
+    POSTLOBBY,
+    SETUP
 
 }
