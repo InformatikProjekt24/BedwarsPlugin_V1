@@ -20,8 +20,6 @@ public class LoginListener implements Listener {
         } else if (Bukkit.getOnlinePlayers().size() == ConfigVars.maxPlayers) {
             e.disallow(PlayerLoginEvent.Result.KICK_FULL, Component.text(MessageFactory.getMessage("login_join_full", placeholder, e.getPlayer())));
         }
-
-        e.getPlayer().teleport(ConfigVars.lobbySpawnLocation);
     }
 
 }
