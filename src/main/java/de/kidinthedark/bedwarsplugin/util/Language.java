@@ -1,15 +1,13 @@
 package de.kidinthedark.bedwarsplugin.util;
 
 import de.kidinthedark.bedwarsplugin.BedwarsPlugin;
-import org.checkerframework.checker.units.qual.A;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Language {
 
-    private String locale;
-    private FileBuilder file;
+    private final String locale;
+    private final FileBuilder file;
 
     private HashMap<String, String> messsages;
 

@@ -6,18 +6,19 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@SuppressWarnings("SqlSourceToSinkFlow")
 public class MySQL {
 
-    private String HOST;
-    private String PORT;
-    private String DATABASE;
-    private String USER;
-    private String PASSWORD;
-    private boolean useSSL;
-    private boolean autoReconnect;
-    private boolean allowPublicKeyRetrieval;
+    private final String HOST;
+    private final String PORT;
+    private final String DATABASE;
+    private final String USER;
+    private final String PASSWORD;
+    private final boolean useSSL;
+    private final boolean autoReconnect;
+    private final boolean allowPublicKeyRetrieval;
     private java.sql.Connection con;
-    private String pre = " [MySQL] ";
+    private final String pre = " [MySQL] ";
 
     public MySQL(String host, String port, String database, String user, String password, boolean ssl,
                  boolean autoReconnect, boolean allowPublicKeyRetrieval) {
@@ -65,7 +66,7 @@ public class MySQL {
             try {
                 con.createStatement().executeUpdate(qry);
             } catch (SQLException e) {
-                e.printStackTrace();
+                throw new RuntimeException(e);
             }
         }
     }

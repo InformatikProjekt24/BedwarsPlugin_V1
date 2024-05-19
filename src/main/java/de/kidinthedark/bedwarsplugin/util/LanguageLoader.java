@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 
+@SuppressWarnings("ResultOfMethodCallIgnored")
 public class LanguageLoader {
 
     private final HashMap<String, Language> loadedLanguages;

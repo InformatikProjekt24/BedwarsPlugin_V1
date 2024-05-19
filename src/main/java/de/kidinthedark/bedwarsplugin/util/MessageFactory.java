@@ -15,17 +15,13 @@ public class MessageFactory {
     public static void broadcastMessage(String message, LanguagePlaceholder placeholders, Player exclude) {
         for(Player receiver : Bukkit.getOnlinePlayers()) {
             if(receiver.getUniqueId().equals(exclude.getUniqueId())) continue;
-            String lang = BedwarsPlugin.instance.languageLoader.getPlayerLanguage(receiver);
-            String messageToParse = BedwarsPlugin.instance.languageLoader.getMessage(lang, message);
-            receiver.sendMessage(ConfigVars.prefix + " " + placeholders.replacePlaceholders(messageToParse));
+            sendMessage(message, placeholders, receiver);
         }
     }
 
     public static void broadcastMessage(String message, LanguagePlaceholder placeholders) {
         for(Player receiver : Bukkit.getOnlinePlayers()) {
-            String lang = BedwarsPlugin.instance.languageLoader.getPlayerLanguage(receiver);
-            String messageToParse = BedwarsPlugin.instance.languageLoader.getMessage(lang, message);
-            receiver.sendMessage(ConfigVars.prefix + " " + placeholders.replacePlaceholders(messageToParse));
+            sendMessage(message, placeholders, receiver);
         }
     }
 

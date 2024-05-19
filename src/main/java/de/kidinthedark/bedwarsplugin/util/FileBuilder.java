@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 
+@SuppressWarnings("ResultOfMethodCallIgnored")
 public class FileBuilder {
 
     private final YamlConfiguration c;

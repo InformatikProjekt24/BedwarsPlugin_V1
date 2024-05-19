@@ -4,9 +4,10 @@ import org.bukkit.ChatColor;
 
 import java.util.HashMap;
 
+@SuppressWarnings("deprecation")
 public class LanguagePlaceholder {
 
-    private HashMap<String, Object> placeholders;
+    private final HashMap<String, Object> placeholders;
 
     public LanguagePlaceholder() {
         placeholders = new HashMap<>();

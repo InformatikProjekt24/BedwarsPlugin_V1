@@ -1,4 +1,11 @@
+//file:noinspection GroovyAssignabilityCheck
+//file:noinspection GroovyAssignabilityCheck
+//file:noinspection GroovyAssignabilityCheck
+//file:noinspection GroovyAssignabilityCheck
+//file:noinspection GroovyAssignabilityCheck
+//file:noinspection GroovyAssignabilityCheck
 plugins {
+    //noinspection GroovyAssignabilityCheck
     id 'java'
 }
 
@@ -31,6 +38,7 @@ java {
     }
 }
 
+//noinspection GroovyAssignabilityCheck
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
 
@@ -41,9 +49,13 @@ tasks.withType(JavaCompile).configureEach {
 
 processResources {
     def props = [version: version]
+    //noinspection GroovyAssignabilityCheck
     inputs.properties props
+    //noinspection GroovyAssignabilityCheck
     filteringCharset 'UTF-8'
+    //noinspection GroovyAssignabilityCheck
     filesMatching('plugin.yml') {
+        //noinspection GroovyAssignabilityCheck
         expand props
     }
 }

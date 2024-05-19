@@ -8,9 +8,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 
+@SuppressWarnings("ResultOfMethodCallIgnored")
 public class ConfigLoader {
-
-    private FileBuilder configFile;
 
 
     public ConfigLoader() {
@@ -35,7 +34,7 @@ public class ConfigLoader {
             }
         }
 
-        configFile = new FileBuilder(BedwarsPlugin.instance.getDataFolder().toPath().toString(), "config.yml");
+        FileBuilder configFile = new FileBuilder(BedwarsPlugin.instance.getDataFolder().toPath().toString(), "config.yml");
 
         /* Load the config */
         ConfigVars.mysqlUser = configFile.getString("mysql.user");
