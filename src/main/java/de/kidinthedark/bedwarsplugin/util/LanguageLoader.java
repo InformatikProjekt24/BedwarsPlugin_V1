@@ -90,6 +90,8 @@ public class LanguageLoader {
                 if(rs.next()) {
                     lang = rs.getString("lang");
                     playerLanguages.put(p.getUniqueId().toString(), lang);
+                } else {
+                    BedwarsPlugin.instance.mySQL.update("INSERT INTO playerLanguages (uuid, lang) VALUES ('"+p.getUniqueId()+"','"+lang+"')");
                 }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
@@ -98,6 +100,12 @@ public class LanguageLoader {
         return lang;
     }
 
-    //TODO implement setPlayerLanguage
+    public void setPlayerLanguage(Player p, String lang) {
+        playerLanguages.replace(p.getUniqueId().toString(), lang);
+
+        if(!getPlayerLanguage(p).equals(lang)) {
+            BedwarsPlugin.instance.mySQL.update("UPDATE playerLanguages SET lang='"+lang+"' WHERE uuid='"+p.getUniqueId()+"'");
+        }
+    }
 
 }
