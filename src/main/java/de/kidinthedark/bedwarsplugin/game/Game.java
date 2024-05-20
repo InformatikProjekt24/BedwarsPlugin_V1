@@ -4,16 +4,48 @@ import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class Game {
 
-    public GameState gameState = GameState.PRELOBBY;
+    private final ArrayList<GameTeam> playerTeams;
 
-    public List<GameTeam> teams = new ArrayList<>();
+    public final HashMap<Player, Integer> playerKills;
+    public final HashMap<Player, Integer> playerFinalKills;
+    public final HashMap<Player, Integer> playerDeaths;
 
-    public HashMap<Player, Integer> playerKills = new HashMap<>();
-    public HashMap<Player, Integer> playerFinalKills = new HashMap<>();
-    public HashMap<Player, Integer> playerDeaths = new HashMap<>();
+    public Game(ArrayList<GameTeam> playerTeams) {
+        this.playerTeams = playerTeams;
+        this.playerKills = new HashMap<>();
+        this.playerFinalKills = new HashMap<>();
+        this.playerDeaths = new HashMap<>();
+    }
 
+    public ArrayList<GameTeam> getTeams() {
+        return playerTeams;
+    }
+
+    public void incrementPlayerKills(Player player) {
+        playerKills.put(player, playerKills.get(player) + 1);
+    }
+
+    public void incrementPlayerFinalKills(Player player) {
+        playerFinalKills.put(player, playerFinalKills.get(player) + 1);
+        playerKills.put(player, playerKills.get(player) + 1);
+    }
+
+    public void incrementPlayerDeaths(Player player) {
+        playerDeaths.put(player, playerDeaths.get(player) + 1);
+    }
+
+    public int getPlayerKills(Player player) {
+        return playerKills.get(player);
+    }
+
+    public int getPlayerFinalKills(Player player) {
+        return playerFinalKills.get(player);
+    }
+
+    public int getPlayerDeaths(Player player) {
+        return playerDeaths.get(player);
+    }
 }
