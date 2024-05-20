@@ -14,8 +14,7 @@ public class LanguagePlaceholder {
     }
 
     public void updatePlaceholder(String placeholderName, Object value) {
-        placeholders.putIfAbsent(placeholderName, value);
-        placeholders.replace(placeholderName, value);
+        placeholders.put(placeholderName, value);
     }
 
     public String replacePlaceholders(String locale, String message) {
@@ -25,6 +24,10 @@ public class LanguagePlaceholder {
             if(placeholder.equals("timeUnit")) {
                 message = message.replaceAll("\\{" + placeholder + "}", MessageFactory.getTimeUnit(locale, placeholders.get(placeholder).toString()));
                 continue;
+            }
+
+            if(placeholder.startsWith("color")) {
+                message = message.replaceAll("\\{" + placeholder + "}", MessageFactory.translateColors(locale, placeholders.get(placeholder).toString()));
             }
 
             message = message.replaceAll("\\{" + placeholder + "}", placeholders.get(placeholder).toString());
