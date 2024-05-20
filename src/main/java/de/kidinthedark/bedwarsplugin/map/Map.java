@@ -7,12 +7,18 @@ import java.util.ArrayList;
 
 public class Map {
 
-    private ArrayList<GameTeam> teams;
-    private ArrayList<Generator> generators;
+    private final ArrayList<GameTeam> teams;
+    private final ArrayList<Generator> generators;
+    private final String name;
 
-    public Map(ArrayList<GameTeam> teams, ArrayList<Generator> generators) {
+    public Map(String name, ArrayList<GameTeam> teams, ArrayList<Generator> generators) {
+        this.name = name;
         this.teams = teams;
         this.generators = generators;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public ArrayList<GameTeam> getTeams() {
