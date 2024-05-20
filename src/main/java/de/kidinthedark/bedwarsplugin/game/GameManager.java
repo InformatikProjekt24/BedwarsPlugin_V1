@@ -1,20 +1,40 @@
 package de.kidinthedark.bedwarsplugin.game;
 
 import de.kidinthedark.bedwarsplugin.BedwarsPlugin;
+import de.kidinthedark.bedwarsplugin.map.generators.Generator;
 import de.kidinthedark.bedwarsplugin.util.ConfigVars;
 import de.kidinthedark.bedwarsplugin.util.LanguagePlaceholder;
 import de.kidinthedark.bedwarsplugin.util.MessageFactory;
 import org.bukkit.Bukkit;
+import org.bukkit.block.Block;
+import org.bukkit.entity.Player;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
+
+import java.util.ArrayList;
 
 public class GameManager {
 
     private GameState gameState = GameState.LOBBY;
-    private boolean busy = false;
+    private boolean busy;
 
-    private int lobbycountdown = ConfigVars.lobbycountdown;
-    private int pregamecountdown = ConfigVars.pregamecountdown;
-    private int postgamecountdown = ConfigVars.postgamecountdown;
-    private boolean lobby_wait = true;
+    private int lobbycountdown;
+    private int pregamecountdown;
+    private int postgamecountdown;
+    private boolean lobby_wait;
+
+    private Game game;
+
+    private final ArrayList<Block> placedBlocks;
+
+    public GameManager() {
+        lobbycountdown = ConfigVars.lobbycountdown;
+        pregamecountdown = ConfigVars.pregamecountdown;
+        postgamecountdown = ConfigVars.postgamecountdown;
+        placedBlocks = new ArrayList<>();
+        busy = false;
+        lobby_wait = true;
+    }
 
     public void tick() {
         if(busy) return;
@@ -118,8 +138,41 @@ public class GameManager {
     public void tickIngameTasks() {
         if(!gameState.equals(GameState.INGAME)) return;
 
+        for(Generator generator : BedwarsPlugin.instance.mapManager.getLoadedMap().getGenerators()) {
+            generator.tick();
+        }
 
+    }
 
+    public void handleBlockPlace(BlockPlaceEvent event) {
+        placedBlocks.add(event.getBlockPlaced());
+    }
+
+    public void handleBlockBreak(BlockBreakEvent event) {
+
+        if(!gameState.equals(GameState.INGAME)) {
+            event.setCancelled(true);
+            return;
+        }
+
+        Block block = event.getBlock();
+        if(placedBlocks.contains(block)) {
+            placedBlocks.remove(block);
+            return;
+        } else {
+            for(GameTeam team : game.getTeams()) {
+                if(team.isBedLocation(block.getLocation())) {
+                    team.breakBed(event.getPlayer());
+                    return;
+                }
+            }
+        }
+        event.setCancelled(true);
+    }
+
+    public void reset() {
+        gameState = GameState.POSTLOBBY;
+        busy = true;
     }
 
 
@@ -132,4 +185,14 @@ public class GameManager {
         return gameState.equals(GameState.LOBBY);
     }
 
+    public GameTeam getPlayerTeam(Player player) {
+        for(GameTeam team : game.getTeams()) {
+            if(team.hasMember(player)) return team;
+        }
+        return null;
+    }
+
+    public Game getGame() {
+        return game;
+    }
 }
