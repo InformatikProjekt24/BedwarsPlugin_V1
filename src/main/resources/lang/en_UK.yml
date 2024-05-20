@@ -8,6 +8,11 @@ login_join_full: "&cThis game is full!"
 game_start_success: "&aGame start initiated!"
 game_start_fail: "&cGame is not ready or is already running!"
 
+game_action_bed_break: "You have destroyed the bed of team {team}!"
+game_action_bed_break_own: "Your can't destroy your own bed!"
+game_action_bed_broke: "The bed of team {team} was destroyed!"
+game_action_bed_broke_own: "Your bed has been destroyed!"
+
 command_no_permission: "&cYou do not have the permission to execute this command!"
 command_language_usage: "&cUsage: /language <locale>"
 command_language_success: "&aYour language was set to {language}"
@@ -15,3 +20,5 @@ command_language_missing: "&cThe language {language} could not be found!"
 
 util_unit_second: "second"
 util_unit_seconds: "seconds"
+
+color_aqua: "&bAQUA"

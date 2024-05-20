@@ -56,12 +56,16 @@ messages:
   - "login_join_full"
   - "game_start_success"
   - "game_start_fail"
+  - "game_action_bed_break"
+  - "game_action_bed_broke"
+  - "game_action_bed_broke_own"
   - "command_no_permission"
   - "command_language_usage"
   - "command_language_success"
   - "command_language_missing"
   - "util_unit_second"
   - "util_unit_seconds"
+  - "color_aqua"
 
 #Lobby spawn
 lobby:
