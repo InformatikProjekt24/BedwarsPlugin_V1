@@ -111,12 +111,12 @@ public class MapManager {
         mapState = MapState.RESET_PENDING;
 
         for(Player player : Bukkit.getOnlinePlayers()) {
-            if(player.getWorld().getName().equals(loadedMap.getName())) {
+            if(player.getWorld().getName().equals(loadedMap.name())) {
                 player.teleport(ConfigVars.lobbySpawnLocation);
             }
         }
 
-        worldManager.unloadWorld(loadedMap.getName());
+        worldManager.unloadWorld(loadedMap.name());
 
         mapState = MapState.END;
     }

@@ -12,6 +12,8 @@ game_action_bed_break: "You have destroyed the bed of team {team}!"
 game_action_bed_break_own: "Your can't destroy your own bed!"
 game_action_bed_broke: "The bed of team {team} was destroyed!"
 game_action_bed_broke_own: "Your bed has been destroyed!"
+game_player_killed: "{player} was killed by {killer}"
+game_player_final_killed: "{player} was eliminated by {killer}"
 
 command_no_permission: "&cYou do not have the permission to execute this command!"
 command_language_usage: "&cUsage: /language <locale>"

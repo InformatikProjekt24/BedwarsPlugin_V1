@@ -138,7 +138,7 @@ public class GameManager {
     public void tickIngameTasks() {
         if(!gameState.equals(GameState.INGAME)) return;
 
-        for(Generator generator : BedwarsPlugin.instance.mapManager.getLoadedMap().getGenerators()) {
+        for(Generator generator : BedwarsPlugin.instance.mapManager.getLoadedMap().generators()) {
             generator.tick();
         }
 

@@ -22,14 +22,19 @@ public class GameTeam {
 
     private final ArrayList<Player> members;
 
-    public GameTeam(Location spawn, Location bed1, Location bed2, Color color, ArrayList<Player> members) {
+    public GameTeam(Location spawn, Location bed1, Location bed2, Color color) {
         this.hasBed = true;
         this.isAlive = true;
         this.spawn = spawn;
         this.bed1 = bed1;
         this.bed2 = bed2;
         this.color = color;
-        this.members = members;
+        this.members = new ArrayList<>();
+    }
+
+    public void setMembers(ArrayList<Player> members) {
+        this.members.clear();
+        this.members.addAll(members);
     }
 
     public Location getSpawn() {

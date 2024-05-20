@@ -59,6 +59,8 @@ messages:
   - "game_action_bed_break"
   - "game_action_bed_broke"
   - "game_action_bed_broke_own"
+  - "game_player_killed"
+  - "game_player_final_killed"
   - "command_no_permission"
   - "command_language_usage"
   - "command_language_success"

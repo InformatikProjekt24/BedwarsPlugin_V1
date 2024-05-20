@@ -1,6 +1,8 @@
 package de.kidinthedark.bedwarsplugin.listeners;
 
 import de.kidinthedark.bedwarsplugin.BedwarsPlugin;
+import de.kidinthedark.bedwarsplugin.util.LanguagePlaceholder;
+import de.kidinthedark.bedwarsplugin.util.MessageFactory;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -10,6 +12,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
+import java.util.Objects;
+
+@SuppressWarnings("UnstableApiUsage")
 public class PlayerListener implements Listener {
 
     @EventHandler
@@ -23,9 +28,14 @@ public class PlayerListener implements Listener {
 
         BedwarsPlugin.instance.gameManager.getGame().incrementPlayerDeaths(e.getPlayer());
 
-        if(BedwarsPlugin.instance.gameManager.getPlayerTeam(e.getPlayer()).hasBed()) {
+        LanguagePlaceholder placeholder = new LanguagePlaceholder();
+        placeholder.updatePlaceholder("player", e.getPlayer().getName());
+        placeholder.updatePlaceholder("killer", Objects.requireNonNull(e.getEntity().getKiller()).getName());
 
+        if(BedwarsPlugin.instance.gameManager.getPlayerTeam(e.getPlayer()).hasBed()) {
+            MessageFactory.broadcastMessage("game_player_killed", placeholder);
         } else {
+            MessageFactory.broadcastMessage("game_player_final_killed", placeholder);
             for(Player p : Bukkit.getOnlinePlayers()) {
                 if(p.equals(e.getPlayer())) continue;
                 p.hidePlayer(BedwarsPlugin.instance, e.getPlayer());
