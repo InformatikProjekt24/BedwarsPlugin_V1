@@ -6,7 +6,6 @@ import de.kidinthedark.bedwarsplugin.util.ConfigVars;
 import de.kidinthedark.bedwarsplugin.util.FileBuilder;
 import de.kidinthedark.bedwarsplugin.util.WorldManager;
 import org.bukkit.Color;
-import org.bukkit.DyeColor;
 import org.bukkit.Location;
 import org.bukkit.World;
 
@@ -79,32 +78,16 @@ public class MapManager {
             Location bed1Location = new Location(world, x1Bed, y1Bed, z1Bed);
             Location bed2Location = new Location(world, x2Bed, y2Bed, z2Bed);
 
-            switch(teamColour) {
-                case "RED":
-                    GameTeam team = new GameTeam(spawnLocation, bed1Location, bed2Location, Color.RED);
-                    break;
-                case "WHITE":
-                    GameTeam team = new GameTeam(spawnLocation, bed1Location, bed2Location, Color.WHITE);
-                    break;
-                case "AQUA":
-                    GameTeam team = new GameTeam(spawnLocation, bed1Location, bed2Location, Color.AQUA);
-                    break;
-                case "YELLOW":
-                    GameTeam team = new GameTeam(spawnLocation, bed1Location, bed2Location, Color.YELLOW);
-                    break;
-                case "GREEN":
-                    GameTeam team = new GameTeam(spawnLocation, bed1Location, bed2Location, Color.GREEN);
-                    break;
-                case "BLUE":
-                    GameTeam team = new GameTeam(spawnLocation, bed1Location, bed2Location, Color.BLUE);
-                    break;
-                case "PINK":
-                    GameTeam team = new GameTeam(spawnLocation, bed1Location, bed2Location, Color.PURPLE);
-                    break;
-                case "GRAY":
-                    GameTeam team = new GameTeam(spawnLocation, bed1Location, bed2Location, Color.GRAY);
-                    break;
-            }
+            GameTeam team = switch (teamColour) {
+                case "RED" -> new GameTeam(spawnLocation, bed1Location, bed2Location, Color.RED);
+                case "WHITE" -> new GameTeam(spawnLocation, bed1Location, bed2Location, Color.WHITE);
+                case "AQUA" -> new GameTeam(spawnLocation, bed1Location, bed2Location, Color.AQUA);
+                case "YELLOW" -> new GameTeam(spawnLocation, bed1Location, bed2Location, Color.YELLOW);
+                case "GREEN" -> new GameTeam(spawnLocation, bed1Location, bed2Location, Color.GREEN);
+                case "BLUE" -> new GameTeam(spawnLocation, bed1Location, bed2Location, Color.BLUE);
+                case "PINK" -> new GameTeam(spawnLocation, bed1Location, bed2Location, Color.PURPLE);
+                default -> new GameTeam(spawnLocation, bed1Location, bed2Location, Color.GRAY);
+            };
 
             teams.add(team);
         }
