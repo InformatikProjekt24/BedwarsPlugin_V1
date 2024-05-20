@@ -9,10 +9,7 @@ import de.kidinthedark.bedwarsplugin.game.UniversalSecondsGameTimer;
 import de.kidinthedark.bedwarsplugin.listeners.JoinListener;
 import de.kidinthedark.bedwarsplugin.listeners.LoginListener;
 import de.kidinthedark.bedwarsplugin.map.MapManager;
-import de.kidinthedark.bedwarsplugin.util.ConfigLoader;
-import de.kidinthedark.bedwarsplugin.util.ConfigVars;
-import de.kidinthedark.bedwarsplugin.util.LanguageLoader;
-import de.kidinthedark.bedwarsplugin.util.MySQL;
+import de.kidinthedark.bedwarsplugin.util.*;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Objects;
