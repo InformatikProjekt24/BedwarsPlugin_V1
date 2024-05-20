@@ -49,8 +49,11 @@ public final class BedwarsPlugin extends JavaPlugin {
 
         getLogger().info("Loading MapManager...");
         mapManager = new MapManager();
-        mapManager.prepare();
-        getLogger().info("MapManager loaded!");
+        if(mapManager.prepare()) {
+            getLogger().info("MapManager loaded!");
+        } else {
+            getLogger().severe("Error loading MapManager!");
+        }
 
         getLogger().info("Connecting MySQL...");
         mySQL = new MySQL(ConfigVars.mysqlHost, ConfigVars.mysqlPort + "", ConfigVars.mysqlDatabase, ConfigVars.mysqlUser, ConfigVars.mysqlPassword, ConfigVars.useSSL, ConfigVars.autoReconnect, ConfigVars.allowPublicKeyRetrieval);
