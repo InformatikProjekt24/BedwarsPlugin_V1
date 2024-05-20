@@ -6,8 +6,10 @@ import de.kidinthedark.bedwarsplugin.commands.tabcompleter.LanguageCommandComple
 import de.kidinthedark.bedwarsplugin.commands.tabcompleter.StartCommandCompleter;
 import de.kidinthedark.bedwarsplugin.game.GameManager;
 import de.kidinthedark.bedwarsplugin.game.UniversalSecondsGameTimer;
+import de.kidinthedark.bedwarsplugin.listeners.BlockListener;
 import de.kidinthedark.bedwarsplugin.listeners.JoinListener;
 import de.kidinthedark.bedwarsplugin.listeners.LoginListener;
+import de.kidinthedark.bedwarsplugin.listeners.PlayerListener;
 import de.kidinthedark.bedwarsplugin.map.MapManager;
 import de.kidinthedark.bedwarsplugin.util.ConfigLoader;
 import de.kidinthedark.bedwarsplugin.util.ConfigVars;
@@ -63,6 +65,8 @@ public final class BedwarsPlugin extends JavaPlugin {
         getLogger().info("Registering listeners...");
         getServer().getPluginManager().registerEvents(new LoginListener(), instance);
         getServer().getPluginManager().registerEvents(new JoinListener(), instance);
+        getServer().getPluginManager().registerEvents(new BlockListener(), instance);
+        getServer().getPluginManager().registerEvents(new PlayerListener(), instance);
         getLogger().info("Listeners registered!");
 
         getLogger().info("Registering commands...");
@@ -80,8 +84,32 @@ public final class BedwarsPlugin extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        getLogger().info("Unloading plugin...");
+
+        getLogger().info("Stopping UniversalSecondsGameTimer...");
         UniversalSecondsGameTimer.stopTimer();
-        // Plugin shutdown logic
+        getLogger().info("UniversalSecondsGameTimer stopped!");
+
+        getLogger().info("Disconnecting MySQL...");
+        mySQL.disconnect();
+
+        getLogger().info("Unloading MapManager...");
+        mapManager.reset();
+        getLogger().info("MapManager unloaded!");
+
+        getLogger().info("Unloading GameManager...");
+        gameManager.reset();
+        getLogger().info("GameManager unloaded!");
+
+        getLogger().info("Unloading ConfigLoader...");
+        configLoader.unloadConfig();
+        getLogger().info("ConfigManager unloaded!");
+
+        getLogger().info("Unloading LanguageLoader...");
+        languageLoader = null;
+        getLogger().info("LanguageLoader unloaded!");
+
+        getLogger().info("Plugin unloaded!");
     }
 
     public void createDefaultMysqlTables() {
