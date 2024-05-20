@@ -4,6 +4,7 @@ public enum MapState {
 
     PREPARING,
     READY,
-    RESET_PENDING
+    RESET_PENDING,
+    END
 
 }
