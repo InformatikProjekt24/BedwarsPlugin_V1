@@ -58,7 +58,7 @@ public class ConfigLoader {
         double lobbyY = configFile.getDouble("lobby.y");
         double lobbyZ = configFile.getDouble("lobby.z");
         float yaw = (float) configFile.getDouble("yaw");
-        float pitch = (float) configFile.getDouble("pitch");
+        float pitch = (float) configFile.getDouble("pit");
         ConfigVars.lobbySpawnLocation = new Location(Bukkit.getWorld(lobbyWorld), lobbyX, lobbyY, lobbyZ, yaw, pitch);
 
         ConfigVars.playersRequired = configFile.getInt("lobbystartthreshold");
