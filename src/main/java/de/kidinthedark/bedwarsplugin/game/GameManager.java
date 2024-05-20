@@ -6,8 +6,6 @@ import de.kidinthedark.bedwarsplugin.util.LanguagePlaceholder;
 import de.kidinthedark.bedwarsplugin.util.MessageFactory;
 import org.bukkit.Bukkit;
 
-import java.util.HashMap;
-
 public class GameManager {
 
     private GameState gameState = GameState.LOBBY;
@@ -17,8 +15,6 @@ public class GameManager {
     private int pregamecountdown = ConfigVars.pregamecountdown;
     private int postgamecountdown = ConfigVars.postgamecountdown;
     private boolean lobby_wait = true;
-
-    private final HashMap<String, Boolean> teamBeds = new HashMap<>();
 
     public void tick() {
         if(busy) return;
