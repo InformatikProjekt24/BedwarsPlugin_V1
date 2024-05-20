@@ -6,9 +6,9 @@ import org.bukkit.inventory.ItemStack;
 
 public class Generator {
 
-    private Location location;
-    private Material material;
-    private int interval;
+    private final Location location;
+    private final Material material;
+    private final int interval;
     private int intervalCount;
 
     public Generator(Location location, Material material, int interval) {
