@@ -49,7 +49,7 @@ public class PlayerListener implements Listener {
 
     @EventHandler
     public void onDamage(EntityDamageEvent e) {
-        if(e.getEntity() instanceof Player player) {
+        if(e.getEntity() instanceof Player) {
             if(e.getDamageSource().getCausingEntity() instanceof Player p) {
                 if(!p.isVisibleByDefault()) {
                     e.setCancelled(true);
