@@ -2,27 +2,27 @@ package de.kidinthedark.bedwarsplugin.map;
 
 import de.kidinthedark.bedwarsplugin.BedwarsPlugin;
 import de.kidinthedark.bedwarsplugin.game.GameTeam;
+import de.kidinthedark.bedwarsplugin.map.generators.Generator;
 import de.kidinthedark.bedwarsplugin.util.ConfigVars;
 import de.kidinthedark.bedwarsplugin.util.FileBuilder;
 import de.kidinthedark.bedwarsplugin.util.WorldManager;
+import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.World;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Random;
 
 public class MapManager {
 
     private MapState mapState = MapState.PREPARING;
 
-    private final HashMap<String, Map> maps;
+    private Map loadedMap;
     private final WorldManager worldManager;
 
     public MapManager() {
-        maps = new HashMap<>();
         worldManager = new WorldManager();
     }
 
@@ -43,20 +43,28 @@ public class MapManager {
         return mapState.equals(MapState.READY);
     }
 
-    public void prepare() {
-        if (!mapState.equals(MapState.PREPARING)) return;
+    public Map getLoadedMap() {
+        return loadedMap;
+    }
+
+    public boolean prepare() {
+        if (!mapState.equals(MapState.PREPARING)) return false;
         Random random = new Random();
         int index = random.nextInt(ConfigVars.mapsAvailable.size());
         String mapName = ConfigVars.mapsAvailable.get(index);
+        ArrayList<GameTeam> teams = new ArrayList<>();
+        ArrayList<Generator> generators = new ArrayList<>();
 
         FileBuilder mapData = new FileBuilder(BedwarsPlugin.instance.getDataFolder().toPath() + "/savedMaps", mapName + ".yml");
 
         String mapDisplayName = mapData.getString("mapName");
 
-        loadMap(mapName);
-        mapName += "_playable";
+        if(!loadMap(mapName)) {
+            Bukkit.shutdown();
+            return false;
+        }
 
-        ArrayList<GameTeam> teams = new ArrayList<>();
+        mapName += "_playable";
 
         for (String key : mapData.getConfigurationSection("teams").getKeys(false)) {
             String teamColour = mapData.getString(key + ".colour");
@@ -92,6 +100,10 @@ public class MapManager {
             teams.add(team);
         }
 
+        loadedMap = new Map(mapDisplayName, teams, generators);
+
+        mapState = MapState.READY;
+        return true;
     }
 
 }
