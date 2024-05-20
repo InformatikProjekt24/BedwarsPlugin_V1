@@ -47,7 +47,7 @@ public class WorldManager {
         File[] allContents = directoryToBeDeleted.listFiles();
         if (allContents != null) {
             for (File file : allContents) {
-                if(!deleteDirectory(file)) return false;
+                if(deleteDirectory(file)) return false;
             }
         }
         return directoryToBeDeleted.delete();
@@ -57,10 +57,10 @@ public class WorldManager {
         File[] allContents = directoryToBeDeleted.listFiles();
         if (allContents != null) {
             for (File file : allContents) {
-                if(!deleteDirectory(file)) return false;
+                if(deleteDirectory(file)) return true;
             }
         }
-        return directoryToBeDeleted.delete();
+        return !directoryToBeDeleted.delete();
     }
 
 }
