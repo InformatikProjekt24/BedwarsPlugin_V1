@@ -73,4 +73,9 @@ public class ConfigLoader {
         ConfigVars.postgamecountdown = configFile.getInt("postgamecountdown");
     }
 
+    public void unloadConfig() {
+        FileBuilder configFile = new FileBuilder(BedwarsPlugin.instance.getDataFolder().toPath().toString(), "config.yml");
+        configFile.save();
+    }
+
 }
