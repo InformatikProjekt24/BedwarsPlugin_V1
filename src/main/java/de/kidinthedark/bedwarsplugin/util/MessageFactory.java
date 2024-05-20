@@ -42,4 +42,8 @@ public class MessageFactory {
         return BedwarsPlugin.instance.languageLoader.getMessage(locale, timeUnit);
     }
 
+    public static String translateColors(String locale, String color) {
+        return BedwarsPlugin.instance.languageLoader.getMessage(locale, color);
+    }
+
 }
