@@ -10,6 +10,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.entity.Player;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -100,10 +101,24 @@ public class MapManager {
             teams.add(team);
         }
 
-        loadedMap = new Map(mapDisplayName, teams, generators);
+        loadedMap = new Map(mapName.replaceAll("_preparing", ""), mapDisplayName, teams, generators);
 
         mapState = MapState.READY;
         return true;
+    }
+
+    public void reset() {
+        mapState = MapState.RESET_PENDING;
+
+        for(Player player : Bukkit.getOnlinePlayers()) {
+            if(player.getWorld().getName().equals(loadedMap.getName())) {
+                player.teleport(ConfigVars.lobbySpawnLocation);
+            }
+        }
+
+        worldManager.unloadWorld(loadedMap.getName());
+
+        mapState = MapState.END;
     }
 
 }
