@@ -107,7 +107,7 @@ public class MapManager {
             };
 
             if (team == null) {
-                BedwarsPlugin.instance.getLogger().info("ERROR: Could not parse colour. Initializing shutdown...");
+                BedwarsPlugin.instance.getLogger().severe("ERROR: Could not parse colour!");
                 Bukkit.shutdown();
                 break;
             }
@@ -133,7 +133,7 @@ public class MapManager {
             };
 
             if (generator == null) {
-                BedwarsPlugin.instance.getLogger().info("ERROR: Could not parse generator material. Initializing shutdown...");
+                BedwarsPlugin.instance.getLogger().severe("ERROR: Could not parse generator material!");
                 Bukkit.shutdown();
                 break;
             }
