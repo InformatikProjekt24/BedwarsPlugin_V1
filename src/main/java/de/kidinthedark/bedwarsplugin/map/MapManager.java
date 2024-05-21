@@ -2,14 +2,10 @@ package de.kidinthedark.bedwarsplugin.map;
 
 import de.kidinthedark.bedwarsplugin.BedwarsPlugin;
 import de.kidinthedark.bedwarsplugin.game.GameTeam;
-import de.kidinthedark.bedwarsplugin.map.generators.Generator;
 import de.kidinthedark.bedwarsplugin.util.ConfigVars;
 import de.kidinthedark.bedwarsplugin.util.FileBuilder;
 import de.kidinthedark.bedwarsplugin.util.WorldManager;
-import org.bukkit.Bukkit;
-import org.bukkit.Color;
-import org.bukkit.Location;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 
 import java.io.IOException;
@@ -67,38 +63,82 @@ public class MapManager {
 
         mapName += "_playable";
 
+        World world = BedwarsPlugin.instance.getServer().getWorld(mapName);
+
         for (String key : mapData.getConfigurationSection("teams").getKeys(false)) {
             String teamColour = mapData.getString(key + ".colour");
-            double xSpawn = mapData.getDouble(key + "spawn.x");
-            double ySpawn = mapData.getDouble(key + "spawn.y");
-            double zSpawn = mapData.getDouble(key + "spawn.z");
-            double yawSpawn = mapData.getDouble(key + "spawn.yaw");
-            double pitSpawn = mapData.getDouble(key + "spawn.pit");
+            double xSpawn = mapData.getDouble(key + ".spawn.x");
+            double ySpawn = mapData.getDouble(key + ".spawn.y");
+            double zSpawn = mapData.getDouble(key + ".spawn.z");
+            double yawSpawn = mapData.getDouble(key + ".spawn.yaw");
+            double pitSpawn = mapData.getDouble(key + ".spawn.pit");
 
-            int x1Bed = mapData.getInt(key + "bed.x1");
-            int y1Bed = mapData.getInt(key + "bed.y1");
-            int z1Bed = mapData.getInt(key + "bed.z1");
-            int x2Bed = mapData.getInt(key + "bed.x2");
-            int y2Bed = mapData.getInt(key + "bed.y2");
-            int z2Bed = mapData.getInt(key + "bed.z2");
-            
-            World world = BedwarsPlugin.instance.getServer().getWorld(mapName);
+            int x1Bed = mapData.getInt(key + ".bed.x1");
+            int y1Bed = mapData.getInt(key + ".bed.y1");
+            int z1Bed = mapData.getInt(key + ".bed.z1");
+            int x2Bed = mapData.getInt(key + ".bed.x2");
+            int y2Bed = mapData.getInt(key + ".bed.y2");
+            int z2Bed = mapData.getInt(key + ".bed.z2");
+
+            double xTeamShop = mapData.getDouble(key + ".team_shop.x");
+            double yTeamShop = mapData.getDouble(key + ".team_shop.y");
+            double zTeamShop = mapData.getDouble(key + ".team_shop.z");
+            double xUpgradeShop = mapData.getDouble(key + ".upgrade_shop.x");
+            double yUpgradeShop = mapData.getDouble(key + ".upgrade_shop.y");
+            double zUpgradeShop = mapData.getDouble(key + ".upgrade_shop.z");
+
+
             Location spawnLocation = new Location(world, xSpawn, ySpawn, zSpawn, (float) yawSpawn, (float) pitSpawn);
             Location bed1Location = new Location(world, x1Bed, y1Bed, z1Bed);
             Location bed2Location = new Location(world, x2Bed, y2Bed, z2Bed);
+            Location teamShopLocation = new Location(world, xTeamShop, yTeamShop, zTeamShop);
+            Location upgradeShopLocation = new Location(world, xUpgradeShop, yUpgradeShop, zUpgradeShop);
 
             GameTeam team = switch (teamColour) {
-                case "RED" -> new GameTeam(spawnLocation, bed1Location, bed2Location, Color.RED);
-                case "WHITE" -> new GameTeam(spawnLocation, bed1Location, bed2Location, Color.WHITE);
-                case "AQUA" -> new GameTeam(spawnLocation, bed1Location, bed2Location, Color.AQUA);
-                case "YELLOW" -> new GameTeam(spawnLocation, bed1Location, bed2Location, Color.YELLOW);
-                case "GREEN" -> new GameTeam(spawnLocation, bed1Location, bed2Location, Color.GREEN);
-                case "BLUE" -> new GameTeam(spawnLocation, bed1Location, bed2Location, Color.BLUE);
-                case "PINK" -> new GameTeam(spawnLocation, bed1Location, bed2Location, Color.PURPLE);
-                default -> new GameTeam(spawnLocation, bed1Location, bed2Location, Color.GRAY);
+                case "RED" -> new GameTeam(spawnLocation, bed1Location, bed2Location, teamShopLocation, upgradeShopLocation, Color.RED);
+                case "WHITE" -> new GameTeam(spawnLocation, bed1Location, bed2Location, teamShopLocation, upgradeShopLocation, Color.WHITE);
+                case "AQUA" -> new GameTeam(spawnLocation, bed1Location, bed2Location, teamShopLocation, upgradeShopLocation, Color.AQUA);
+                case "YELLOW" -> new GameTeam(spawnLocation, bed1Location, bed2Location, teamShopLocation, upgradeShopLocation, Color.YELLOW);
+                case "GREEN" -> new GameTeam(spawnLocation, bed1Location, bed2Location, teamShopLocation, upgradeShopLocation, Color.GREEN);
+                case "BLUE" -> new GameTeam(spawnLocation, bed1Location, bed2Location, teamShopLocation, upgradeShopLocation, Color.BLUE);
+                case "PINK" -> new GameTeam(spawnLocation, bed1Location, bed2Location, teamShopLocation, upgradeShopLocation, Color.PURPLE);
+                case "GREY" -> new GameTeam(spawnLocation, bed1Location, bed2Location, teamShopLocation, upgradeShopLocation, Color.GRAY);
+                default -> null;
             };
 
+            if (team == null) {
+                BedwarsPlugin.instance.getLogger().info("ERROR: Could not parse colour. Initializing shutdown...");
+                Bukkit.shutdown();
+                break;
+            }
+
             teams.add(team);
+        }
+
+        for (String key : mapData.getConfigurationSection("generators").getKeys(false)) {
+            double xGen = mapData.getDouble(key + ".x");
+            double yGen = mapData.getDouble(key + ".y");
+            double zGen = mapData.getDouble(key + ".z");
+
+            Location genLocation = new Location(world, xGen, yGen, zGen);
+
+            String genType = mapData.getString(key + ".type");
+
+            Generator generator = switch (genType) {
+                case "GOLD" -> new Generator(genLocation, Material.GOLD_INGOT, 8);
+                case "DIAMOND" -> new Generator(genLocation, Material.DIAMOND, 30);
+                case "EMERALD" -> new Generator(genLocation, Material.EMERALD, 65);
+                case "IRON" -> new Generator(genLocation, Material.IRON_INGOT, 2);
+                default -> null;
+            };
+
+            if (generator == null) {
+                BedwarsPlugin.instance.getLogger().info("ERROR: Could not parse generator material. Initializing shutdown...");
+                Bukkit.shutdown();
+                break;
+            }
+
+            generators.add(generator);
         }
 
         loadedMap = new Map(mapName.replaceAll("_preparing", ""), mapDisplayName, teams, generators);

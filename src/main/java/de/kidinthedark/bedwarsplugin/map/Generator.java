@@ -1,4 +1,4 @@
-package de.kidinthedark.bedwarsplugin.map.generators;
+package de.kidinthedark.bedwarsplugin.map;
 
 import org.bukkit.Location;
 import org.bukkit.Material;

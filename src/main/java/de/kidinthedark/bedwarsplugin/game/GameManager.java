@@ -1,7 +1,7 @@
 package de.kidinthedark.bedwarsplugin.game;
 
 import de.kidinthedark.bedwarsplugin.BedwarsPlugin;
-import de.kidinthedark.bedwarsplugin.map.generators.Generator;
+import de.kidinthedark.bedwarsplugin.map.Generator;
 import de.kidinthedark.bedwarsplugin.util.ConfigVars;
 import de.kidinthedark.bedwarsplugin.util.LanguagePlaceholder;
 import de.kidinthedark.bedwarsplugin.util.MessageFactory;

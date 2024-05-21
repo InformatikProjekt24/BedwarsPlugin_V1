@@ -19,15 +19,19 @@ public class GameTeam {
     private final Location spawn;
     private final Location bed1;
     private final Location bed2;
+    private final Location teamShop;
+    private final Location upgradeShop;
 
     private final ArrayList<Player> members;
 
-    public GameTeam(Location spawn, Location bed1, Location bed2, Color color) {
+    public GameTeam(Location spawn, Location bed1, Location bed2, Location teamShop, Location upgradeShop, Color color) {
         this.hasBed = true;
         this.isAlive = true;
         this.spawn = spawn;
         this.bed1 = bed1;
         this.bed2 = bed2;
+        this.teamShop = teamShop;
+        this.upgradeShop = upgradeShop;
         this.color = color;
         this.members = new ArrayList<>();
     }
@@ -40,6 +44,12 @@ public class GameTeam {
     public Location getSpawn() {
         return spawn;
     }
+
+    public Location getTeamShop() {return teamShop; }
+
+    public Location getUpgradeShop() {return upgradeShop; }
+
+    public Color getColor() {return color; }
 
     public boolean isAlive() {
         return isAlive;
