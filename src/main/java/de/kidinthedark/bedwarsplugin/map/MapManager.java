@@ -109,7 +109,7 @@ public class MapManager {
             if (team == null) {
                 BedwarsPlugin.instance.getLogger().severe("ERROR: Could not parse colour!");
                 Bukkit.shutdown();
-                break;
+                return false;
             }
 
             teams.add(team);
