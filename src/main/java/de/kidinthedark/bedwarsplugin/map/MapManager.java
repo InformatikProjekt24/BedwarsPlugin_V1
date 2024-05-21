@@ -135,7 +135,7 @@ public class MapManager {
             if (generator == null) {
                 BedwarsPlugin.instance.getLogger().severe("ERROR: Could not parse generator material!");
                 Bukkit.shutdown();
-                break;
+                return false;
             }
 
             generators.add(generator);
