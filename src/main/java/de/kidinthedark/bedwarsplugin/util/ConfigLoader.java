@@ -52,7 +52,7 @@ public class ConfigLoader {
         ConfigVars.useSSL = configFile.getBoolean("useSSL");
 
         //Map loading
-        ConfigVars.mapsAvailable = configFile.getSringList("maps");
+        ConfigVars.mapsAvailable = configFile.getStringList("maps");
         String lobbyWorld = configFile.getString("lobby.world");
         double lobbyX = configFile.getDouble("lobby.x");
         double lobbyY = configFile.getDouble("lobby.y");
@@ -66,8 +66,8 @@ public class ConfigLoader {
 
         ConfigVars.prefix = ChatColor.translateAlternateColorCodes('&', configFile.getString("prefix"));
         ConfigVars.defaultLanguage = configFile.getString("defaultLanguage");
-        ConfigVars.availableLanguages = configFile.getSringList("langs");
-        ConfigVars.languageMessages = configFile.getSringList("messages");
+        ConfigVars.availableLanguages = configFile.getStringList("langs");
+        ConfigVars.languageMessages = configFile.getStringList("messages");
         ConfigVars.lobbycountdown = configFile.getInt("lobbycountdown");
         ConfigVars.pregamecountdown = configFile.getInt("pregamecountdown");
         ConfigVars.postgamecountdown = configFile.getInt("postgamecountdown");

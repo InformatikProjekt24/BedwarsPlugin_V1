@@ -1,6 +1,7 @@
 package de.kidinthedark.bedwarsplugin;
 
 import de.kidinthedark.bedwarsplugin.commands.LanguageCommand;
+import de.kidinthedark.bedwarsplugin.commands.SetupCommand;
 import de.kidinthedark.bedwarsplugin.commands.StartCommand;
 import de.kidinthedark.bedwarsplugin.commands.tabcompleter.LanguageCommandCompleter;
 import de.kidinthedark.bedwarsplugin.commands.tabcompleter.StartCommandCompleter;
@@ -78,6 +79,8 @@ public final class BedwarsPlugin extends JavaPlugin {
         getLogger().info("Commands registered!");
 
         UniversalSecondsGameTimer.startTimer();
+
+        getCommand("setup").setExecutor(new SetupCommand());
 
         getLogger().info("Plugin loaded!");
     }

@@ -62,7 +62,7 @@ public class FileBuilder {
     public boolean getBoolean(String ValuePath) {
         return c.getBoolean(ValuePath);
     }
-    public List<String> getSringList(String ValuePath) {
+    public List<String> getStringList(String ValuePath) {
         return c.getStringList(ValuePath);
     }
 
