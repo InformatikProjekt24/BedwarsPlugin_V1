@@ -47,6 +47,7 @@ public class MapManager {
     public boolean prepare() {
         if (!mapState.equals(MapState.PREPARING)) return false;
         Random random = new Random();
+        if (ConfigVars.mapsAvailable.isEmpty()) return true;
         int index = random.nextInt(ConfigVars.mapsAvailable.size());
         String mapName = ConfigVars.mapsAvailable.get(index);
         ArrayList<GameTeam> teams = new ArrayList<>();
@@ -102,7 +103,7 @@ public class MapManager {
                 case "GREEN" -> new GameTeam(spawnLocation, bed1Location, bed2Location, teamShopLocation, upgradeShopLocation, Color.GREEN);
                 case "BLUE" -> new GameTeam(spawnLocation, bed1Location, bed2Location, teamShopLocation, upgradeShopLocation, Color.BLUE);
                 case "PINK" -> new GameTeam(spawnLocation, bed1Location, bed2Location, teamShopLocation, upgradeShopLocation, Color.PURPLE);
-                case "GREY" -> new GameTeam(spawnLocation, bed1Location, bed2Location, teamShopLocation, upgradeShopLocation, Color.GRAY);
+                case "GRAY" -> new GameTeam(spawnLocation, bed1Location, bed2Location, teamShopLocation, upgradeShopLocation, Color.GRAY);
                 default -> null;
             };
 

@@ -4,6 +4,7 @@ import de.kidinthedark.bedwarsplugin.commands.LanguageCommand;
 import de.kidinthedark.bedwarsplugin.commands.SetupCommand;
 import de.kidinthedark.bedwarsplugin.commands.StartCommand;
 import de.kidinthedark.bedwarsplugin.commands.tabcompleter.LanguageCommandCompleter;
+import de.kidinthedark.bedwarsplugin.commands.tabcompleter.SetupCommandCompleter;
 import de.kidinthedark.bedwarsplugin.commands.tabcompleter.StartCommandCompleter;
 import de.kidinthedark.bedwarsplugin.game.GameManager;
 import de.kidinthedark.bedwarsplugin.game.UniversalSecondsGameTimer;
@@ -73,14 +74,14 @@ public final class BedwarsPlugin extends JavaPlugin {
         getLogger().info("Registering commands...");
         Objects.requireNonNull(getCommand("start")).setExecutor(new StartCommand());
         Objects.requireNonNull(getCommand("language")).setExecutor(new LanguageCommand());
+        Objects.requireNonNull(getCommand("setup")).setExecutor(new SetupCommand());
 
         Objects.requireNonNull(getCommand("start")).setTabCompleter(new StartCommandCompleter());
         Objects.requireNonNull(getCommand("language")).setTabCompleter(new LanguageCommandCompleter());
+        Objects.requireNonNull(getCommand("setup")).setTabCompleter(new SetupCommandCompleter());
         getLogger().info("Commands registered!");
 
         UniversalSecondsGameTimer.startTimer();
-
-        getCommand("setup").setExecutor(new SetupCommand());
 
         getLogger().info("Plugin loaded!");
     }
