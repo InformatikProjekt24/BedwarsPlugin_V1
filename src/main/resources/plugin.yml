@@ -19,9 +19,5 @@ commands:
     description: Sets your language
   setup:
     description: Sets up important locations in the server. Enables the game to work correctly.
-    usage: /<command>
-    aliases:
-      - lennart
-      - timofey
 
 
