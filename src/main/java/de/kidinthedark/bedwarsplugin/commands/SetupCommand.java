@@ -3,7 +3,7 @@ package de.kidinthedark.bedwarsplugin.commands;
 import de.kidinthedark.bedwarsplugin.BedwarsPlugin;
 import de.kidinthedark.bedwarsplugin.util.FileBuilder;
 import de.kidinthedark.bedwarsplugin.util.LanguagePlaceholder;
-import org.bukkit.Bukkit;
+import de.kidinthedark.bedwarsplugin.util.MessageFactory;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -91,7 +91,7 @@ public class SetupCommand implements CommandExecutor {
                     //todo: "You did not provide any arguments when running the command. Try again or type '/help setup'."
                 }
             } else {
-                //todo: "You don't have permission to use this command."
+                MessageFactory.sendMessage("command_no_permission", placeholder, player);
             }
 
         } else {
