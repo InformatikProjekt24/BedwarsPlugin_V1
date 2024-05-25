@@ -2,10 +2,7 @@ package de.kidinthedark.bedwarsplugin.game;
 
 import de.kidinthedark.bedwarsplugin.util.LanguagePlaceholder;
 import de.kidinthedark.bedwarsplugin.util.MessageFactory;
-import org.bukkit.Bukkit;
-import org.bukkit.Color;
-import org.bukkit.Location;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -50,6 +47,11 @@ public class GameTeam {
     public Location getUpgradeShop() {return upgradeShop; }
 
     public Color getColor() {return color; }
+
+    public String getColorString() {
+        return null;
+        //TODO FIND SOLUTION
+    }
 
     public boolean isAlive() {
         return isAlive;

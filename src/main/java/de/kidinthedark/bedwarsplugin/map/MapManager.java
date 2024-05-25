@@ -102,7 +102,7 @@ public class MapManager {
                 case "YELLOW" -> new GameTeam(spawnLocation, bed1Location, bed2Location, teamShopLocation, upgradeShopLocation, Color.YELLOW);
                 case "GREEN" -> new GameTeam(spawnLocation, bed1Location, bed2Location, teamShopLocation, upgradeShopLocation, Color.GREEN);
                 case "BLUE" -> new GameTeam(spawnLocation, bed1Location, bed2Location, teamShopLocation, upgradeShopLocation, Color.BLUE);
-                case "PINK" -> new GameTeam(spawnLocation, bed1Location, bed2Location, teamShopLocation, upgradeShopLocation, Color.PURPLE);
+                case "PINK" -> new GameTeam(spawnLocation, bed1Location, bed2Location, teamShopLocation, upgradeShopLocation, Color.FUCHSIA);
                 case "GRAY" -> new GameTeam(spawnLocation, bed1Location, bed2Location, teamShopLocation, upgradeShopLocation, Color.GRAY);
                 default -> null;
             };
