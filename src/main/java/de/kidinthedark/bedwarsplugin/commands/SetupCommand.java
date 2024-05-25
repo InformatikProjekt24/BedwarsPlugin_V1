@@ -43,12 +43,16 @@ public class SetupCommand implements CommandExecutor {
                                 builder.addDefault(key + ".spawn.yaw", player.getYaw());
                                 builder.addDefault(key + ".spawn.pit", player.getPitch());
                             } else if (args[2].equalsIgnoreCase("bed") && args.length == 9) {
-                                builder.addDefault(key + ".bed.x1", Integer.parseInt(args[3]));
-                                builder.addDefault(key + ".bed.y1", Integer.parseInt(args[4]));
-                                builder.addDefault(key + ".bed.z1", Integer.parseInt(args[5]));
-                                builder.addDefault(key + ".bed.x2", Integer.parseInt(args[6]));
-                                builder.addDefault(key + ".bed.y2", Integer.parseInt(args[7]));
-                                builder.addDefault(key + ".bed.z2", Integer.parseInt(args[8]));
+                                try {
+                                    builder.addDefault(key + ".bed.x1", Integer.parseInt(args[3]));
+                                    builder.addDefault(key + ".bed.y1", Integer.parseInt(args[4]));
+                                    builder.addDefault(key + ".bed.z1", Integer.parseInt(args[5]));
+                                    builder.addDefault(key + ".bed.x2", Integer.parseInt(args[6]));
+                                    builder.addDefault(key + ".bed.y2", Integer.parseInt(args[7]));
+                                    builder.addDefault(key + ".bed.z2", Integer.parseInt(args[8]));
+                                } catch (NumberFormatException e) {
+                                    MessageFactory.sendMessage("command_setup_bed_nan", placeholder, player);
+                                }
                             } else if(args[2].equalsIgnoreCase("teamshop")) {
                                 builder.addDefault(key + ".team_shop.x", player.getX());
                                 builder.addDefault(key + ".team_shop.y", player.getY());
@@ -58,11 +62,11 @@ public class SetupCommand implements CommandExecutor {
                                 builder.addDefault(key + ".upgrade_shop.y", player.getY());
                                 builder.addDefault(key + ".upgrade_shop.z", player.getZ());
                             } else {
-                                //todo: "Error: Wrong use of command."
+                                MessageFactory.sendMessage("command_setup_usage", placeholder, player);
                             }
 
                         } catch (NumberFormatException e) {
-                            //todo: "You did not declare a number where a number should be declared."
+                            MessageFactory.sendMessage("command_setup_team_nan", placeholder, player);
                         }
 
                     } else if (args[0].equalsIgnoreCase("generator")) {
@@ -78,17 +82,17 @@ public class SetupCommand implements CommandExecutor {
                                 builder.addDefault(key + ".y", player.getY());
                                 builder.addDefault(key + ".z", player.getZ());
                             } else {
-                                //todo: "Error: Wrong use of command."
+                                MessageFactory.sendMessage("command_setup_usage", placeholder, player);
                             }
 
                         } catch (NumberFormatException e) {
-                            //todo: "You did not declare a number where a number should be declared."
+                            MessageFactory.sendMessage("command_setup_generator_nan", placeholder, player);
                         }
                     }
 
                     builder.save();
                 } else {
-                    //todo: "You did not provide any arguments when running the command. Try again or type '/help setup'."
+                    MessageFactory.sendMessage("command_setup_usage", placeholder, player);
                 }
             } else {
                 MessageFactory.sendMessage("command_no_permission", placeholder, player);
