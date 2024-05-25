@@ -5,13 +5,13 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
-import org.bukkit.util.Vector;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class SetupCommandCompleter implements TabCompleter {
     @Override
@@ -34,20 +34,20 @@ public class SetupCommandCompleter implements TabCompleter {
                 } else if (args.length == 6) {
                     return Collections.singletonList(Double.toString(player.getZ()));
                 } else {
-                    //todo: checken ob das hier funktioniert
-                    //sollte eig die Koordinaten 1 Block vor dem Spieler zurückgeben
+                    if(player.getTargetBlockExact(5) == null) {
+                        return null;
+                    } else {
+                        Location block = Objects.requireNonNull(player.getTargetBlockExact(5)).getLocation();
 
-                    Location eyes = player.getEyeLocation();
-                    Vector direction = eyes.getDirection();
-
-                    if (args.length == 7) {
-                        return Collections.singletonList(Double.toString(direction.multiply(2).getX()));
-                    }
-                    if (args.length == 8) {
-                        return Collections.singletonList(Double.toString(direction.multiply(2).getY()));
-                    }
-                    if (args.length == 9) {
-                        return Collections.singletonList(Double.toString(direction.multiply(2).getZ()));
+                        if (args.length == 7) {
+                            return List.of(block.getBlockX() + "");
+                        }
+                        if (args.length == 8) {
+                            return List.of(block.getBlockY() + "");
+                        }
+                        if (args.length == 9) {
+                            return List.of(block.getBlockZ() + "");
+                        }
                     }
                 }
             }
