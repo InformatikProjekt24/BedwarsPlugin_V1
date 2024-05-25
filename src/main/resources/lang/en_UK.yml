@@ -16,6 +16,14 @@ game_player_killed: "{player} was killed by {killer}"
 game_player_final_killed: "{player} was eliminated by {killer}"
 
 command_no_permission: "&cYou do not have the permission to execute this command!"
+
+command_setup_usage: "&cWrong usage! For Details please execute: /setup help"
+command_setup_team_nan: "&cInvalid team number!"
+command_setup_bed_nan: "&cInvalid bed coordinates!"
+command_setup_generator_nan: "&cInvalid generator number!"
+command_setup_map_name_set: "&aMap name was set to: {mapName}"
+command_setup_team_size_set: "&aTeam size was set to {teamSize}"
+
 command_language_usage: "&cUsage: /language <locale>"
 command_language_success: "&aYour language was set to {language}"
 command_language_missing: "&cThe language {language} could not be found!"
