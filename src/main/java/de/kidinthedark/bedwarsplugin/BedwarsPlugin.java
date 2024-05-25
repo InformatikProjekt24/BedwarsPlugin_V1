@@ -118,5 +118,6 @@ public final class BedwarsPlugin extends JavaPlugin {
 
     public void createDefaultMysqlTables() {
         mySQL.update("CREATE TABLE IF NOT EXISTS playerLanguages (uuid VARCHAR(100), lang VARCHAR(10));");
+        mySQL.update("CREATE TABLE IF NOT EXISTS playerKills (uuid VARCHAR(100), kills BIGINT);");
     }
 }
