@@ -9,7 +9,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -27,28 +26,19 @@ public class SetupCommandCompleter implements TabCompleter {
             return Arrays.asList("red", "blue", "yellow", "green", "aqua", "white", "pink", "gray");
         } else if (args[0].equalsIgnoreCase("team") && args[2].equalsIgnoreCase("bed")) {
             if (sender instanceof Player player) {
-                if (args.length == 4) {
-                    return Collections.singletonList(Double.toString(player.getX()));
-                } else if (args.length == 5) {
-                    return Collections.singletonList(Double.toString(player.getY()));
-                } else if (args.length == 6) {
-                    return Collections.singletonList(Double.toString(player.getZ()));
-                } else {
+                if(args.length >= 4) {
                     if(player.getTargetBlockExact(5) == null) {
                         return null;
-                    } else {
-                        Location block = Objects.requireNonNull(player.getTargetBlockExact(5)).getLocation();
-
-                        if (args.length == 7) {
-                            return List.of(block.getBlockX() + "");
-                        }
-                        if (args.length == 8) {
-                            return List.of(block.getBlockY() + "");
-                        }
-                        if (args.length == 9) {
-                            return List.of(block.getBlockZ() + "");
-                        }
                     }
+
+                    Location block = Objects.requireNonNull(player.getTargetBlockExact(5)).getLocation();
+
+                    return switch (args.length) {
+                        case 4, 7 -> List.of(block.getBlockX() + "");
+                        case 5, 8 -> List.of(block.getBlockY() + "");
+                        case 6, 9 -> List.of(block.getBlockZ() + "");
+                        default -> null;
+                    };
                 }
             }
 
