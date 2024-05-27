@@ -16,7 +16,7 @@ public class SetupCommand implements CommandExecutor {
         LanguagePlaceholder placeholder = new LanguagePlaceholder();
 
         if (sender instanceof Player player) {
-            if (player.hasPermission("bedwars.start")) {
+            if (player.hasPermission("bedwars.setup")) {
                 if (args.length > 0) {
                     FileBuilder builder = new FileBuilder(BedwarsPlugin.instance.getDataFolder().toPath() + "/savedMaps", player.getWorld().getName() + ".yml");
                     builder.mkfile();
