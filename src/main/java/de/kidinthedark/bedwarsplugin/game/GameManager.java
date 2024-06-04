@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scoreboard.Team;
 
 import java.util.ArrayList;
 
@@ -29,11 +30,14 @@ public class GameManager {
 
     private final ArrayList<Block> placedBlocks;
 
+    public ArrayList<GameShop> shops;
+
     public GameManager() {
         lobbycountdown = ConfigVars.lobbycountdown;
         pregamecountdown = ConfigVars.pregamecountdown;
         postgamecountdown = ConfigVars.postgamecountdown;
         placedBlocks = new ArrayList<>();
+        shops = new ArrayList<>();
         busy = false;
         lobby_wait = true;
     }
@@ -131,10 +135,25 @@ public class GameManager {
         busy = true;
         gameState = GameState.PREGAME;
 
+        for(GameTeam team : game.getTeams()) {
+            Location shopLocation = team.getTeamShop();
+            Location upgradeLocation = team.getUpgradeShop();
+
+            
+
+        }
+
     }
 
     public void prepareGame() {
         busy = true;
+        Bukkit.getScheduler().runTaskAsynchronously(BedwarsPlugin.instance, () -> {
+            for(Player p : Bukkit.getOnlinePlayers()) {
+                Location loc = getPlayerTeam(p).getSpawn();
+                p.teleport(loc);
+            }
+        });
+        busy = false;
     }
 
     public void doPostgameTasks() {
@@ -207,5 +226,9 @@ public class GameManager {
 
     public Game getGame() {
         return game;
+    }
+
+    public ArrayList<GameShop> getShops() {
+        return shops;
     }
 }

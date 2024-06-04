@@ -1,6 +1,7 @@
 package de.kidinthedark.bedwarsplugin.listeners;
 
 import de.kidinthedark.bedwarsplugin.BedwarsPlugin;
+import de.kidinthedark.bedwarsplugin.game.GameShop;
 import de.kidinthedark.bedwarsplugin.game.GameState;
 import de.kidinthedark.bedwarsplugin.util.LanguagePlaceholder;
 import de.kidinthedark.bedwarsplugin.util.MessageFactory;
@@ -11,7 +12,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityInteractEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.inventory.InventoryInteractEvent;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
 
 import java.util.Objects;
 
@@ -65,5 +69,26 @@ public class PlayerListener implements Listener {
             e.setCancelled(true);
         }
     }
+
+    @EventHandler
+    public void onInteract(PlayerInteractEntityEvent e) {
+
+        e.setCancelled(true);
+
+        for(GameShop shop : BedwarsPlugin.instance.gameManager.getShops()) {
+            if(e.getRightClicked().equals(shop.getEntity())) {
+                shop.handleInteract(e.getPlayer());
+            }
+        }
+
+
+    }
+
+    @EventHandler
+    public void onInventoryInteract(InventoryInteractEvent e) {
+        GameShop.handleInventoryInteract(e);
+    }
+
+
 
 }
