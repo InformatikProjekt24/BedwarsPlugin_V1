@@ -67,7 +67,7 @@ public class MapManager {
         World world = BedwarsPlugin.instance.getServer().getWorld(mapName);
 
         for (String key : mapData.getConfigurationSection("teams").getKeys(false)) {
-            String teamColour = mapData.getString(key + ".colour");
+            String teamcolor = mapData.getString(key + ".color");
             double xSpawn = mapData.getDouble(key + ".spawn.x");
             double ySpawn = mapData.getDouble(key + ".spawn.y");
             double zSpawn = mapData.getDouble(key + ".spawn.z");
@@ -95,7 +95,7 @@ public class MapManager {
             Location teamShopLocation = new Location(world, xTeamShop, yTeamShop, zTeamShop);
             Location upgradeShopLocation = new Location(world, xUpgradeShop, yUpgradeShop, zUpgradeShop);
 
-            GameTeam team = switch (teamColour) {
+            GameTeam team = switch (teamcolor) {
                 case "RED" -> new GameTeam(spawnLocation, bed1Location, bed2Location, teamShopLocation, upgradeShopLocation, Color.RED);
                 case "WHITE" -> new GameTeam(spawnLocation, bed1Location, bed2Location, teamShopLocation, upgradeShopLocation, Color.WHITE);
                 case "AQUA" -> new GameTeam(spawnLocation, bed1Location, bed2Location, teamShopLocation, upgradeShopLocation, Color.AQUA);
@@ -108,7 +108,7 @@ public class MapManager {
             };
 
             if (team == null) {
-                BedwarsPlugin.instance.getLogger().severe("ERROR: Could not parse colour!");
+                BedwarsPlugin.instance.getLogger().severe("ERROR: Could not parse color!");
                 Bukkit.shutdown();
                 return false;
             }
