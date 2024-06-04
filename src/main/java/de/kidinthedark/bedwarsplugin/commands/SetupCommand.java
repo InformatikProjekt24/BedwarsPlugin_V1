@@ -36,8 +36,8 @@ public class SetupCommand implements CommandExecutor {
                             teamNumber = Integer.parseInt(args[1]);
                             String key = "teams.t_" + teamNumber;
 
-                            if (args[2].equalsIgnoreCase("colour")) {
-                                builder.addDefault(key + ".colour", args[3].toUpperCase());
+                            if (args[2].equalsIgnoreCase("color")) {
+                                builder.addDefault(key + ".color", args[3].toUpperCase());
                             } else if (args[2].equalsIgnoreCase("spawn")) {
                                 builder.addDefault(key + ".spawn.x", player.getX());
                                 builder.addDefault(key + ".spawn.y", player.getY());
