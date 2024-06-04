@@ -19,10 +19,10 @@ public class SetupCommandCompleter implements TabCompleter {
         if (args.length == 1) {
             return Arrays.asList("mapname", "teamsize", "team", "generator");
         } else if (args.length == 3 && args[0].equalsIgnoreCase("team")) {
-            return Arrays.asList("colour", "spawn", "bed", "teamshop", "upgradeshop");
+            return Arrays.asList("color", "spawn", "bed", "teamshop", "upgradeshop");
         } else if (args.length == 3 && args[0].equalsIgnoreCase("generator")) {
             return Arrays.asList("type", "spawn");
-        } else if (args.length == 4 && args[0].equalsIgnoreCase("team") && args[2].equalsIgnoreCase("colour")) {
+        } else if (args.length == 4 && args[0].equalsIgnoreCase("team") && args[2].equalsIgnoreCase("color")) {
             return Arrays.asList("red", "blue", "yellow", "green", "aqua", "white", "pink", "gray");
         } else if (args[0].equalsIgnoreCase("team") && args[2].equalsIgnoreCase("bed")) {
             if (sender instanceof Player player) {
