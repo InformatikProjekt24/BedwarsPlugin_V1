@@ -6,10 +6,12 @@ import de.kidinthedark.bedwarsplugin.util.ConfigVars;
 import de.kidinthedark.bedwarsplugin.util.LanguagePlaceholder;
 import de.kidinthedark.bedwarsplugin.util.MessageFactory;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
 
@@ -58,11 +60,7 @@ public class GameManager {
                 }
                 break;
             case PREGAME:
-                if(pregamecountdown != 0) {
-                    pregamecountdown--;
-                } else {
-                    prepareGame();
-                }
+                doPregameTick();
                 break;
             case INGAME:
                 tickIngameTasks();
@@ -100,6 +98,21 @@ public class GameManager {
                 if(lobbycountdown<=10) MessageFactory.broadcastMessage("lobby_info_countdown_" + state, placeholder);
                 break;
         }
+    }
+
+    public void doPregameTick() {
+        if(pregamecountdown != 0) {
+            pregamecountdown--;
+        } else {
+            prepareGame();
+        }
+
+        Bukkit.getScheduler().runTaskAsynchronously(BedwarsPlugin.instance, () -> {
+            for(Player p : Bukkit.getOnlinePlayers()) {
+                Location loc = getPlayerTeam(p).getSpawn();
+                p.teleport(loc);
+            }
+        });
     }
 
     public boolean startLobbyCountdown() {

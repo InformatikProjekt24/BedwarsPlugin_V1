@@ -24,10 +24,12 @@ public class SetupCommand implements CommandExecutor {
 
                     if (args[0].equalsIgnoreCase("mapname")) {
                         builder.addDefault("mapName", args[1]);
-                        //todo: "Map name was set to " + args[1]
+                        placeholder.updatePlaceholder("mapName", args[1]);
+                        MessageFactory.sendMessage("command_setup_map_name_set", placeholder, player);
                     } else if (args[0].equalsIgnoreCase("teamsize")) {
                         builder.addDefault("teamSize", args[1]);
-                        //todo: "Team size was set to " + args[1]
+                        placeholder.updatePlaceholder("teamSize", args[1]);
+                        MessageFactory.sendMessage("command_setup_team_size_set", placeholder, player);
                     } else if (args[0].equalsIgnoreCase("team")) {
                         try {
                             int teamNumber;

@@ -1,6 +1,7 @@
 package de.kidinthedark.bedwarsplugin.listeners;
 
 import de.kidinthedark.bedwarsplugin.BedwarsPlugin;
+import de.kidinthedark.bedwarsplugin.game.GameState;
 import de.kidinthedark.bedwarsplugin.util.LanguagePlaceholder;
 import de.kidinthedark.bedwarsplugin.util.MessageFactory;
 import net.kyori.adventure.text.Component;
@@ -49,12 +50,19 @@ public class PlayerListener implements Listener {
 
     @EventHandler
     public void onDamage(EntityDamageEvent e) {
+        if(!BedwarsPlugin.instance.gameManager.getGameState().equals(GameState.INGAME)) {
+            e.setCancelled(true);
+            return;
+        }
+
         if(e.getEntity() instanceof Player) {
             if(e.getDamageSource().getCausingEntity() instanceof Player p) {
                 if(!p.isVisibleByDefault()) {
                     e.setCancelled(true);
                 }
             }
+        } else {
+            e.setCancelled(true);
         }
     }
 
