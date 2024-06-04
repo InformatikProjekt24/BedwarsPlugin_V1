@@ -11,8 +11,6 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.scoreboard.Team;
 
 import java.util.ArrayList;
 
@@ -30,7 +28,7 @@ public class GameManager {
 
     private final ArrayList<Block> placedBlocks;
 
-    public ArrayList<GameShop> shops;
+    private final ArrayList<GameShop> shops;
 
     public GameManager() {
         lobbycountdown = ConfigVars.lobbycountdown;
@@ -57,7 +55,7 @@ public class GameManager {
                     placeholder.updatePlaceholder("time", String.valueOf(lobbycountdown));
                     placeholder.updatePlaceholder("timeUnit", (lobbycountdown==1) ? "util_unit_second" : "util_unit_seconds");
 
-                    doCountdown(placeholder, "start");
+                    doLobbyCountdown(placeholder, "start");
                 }
                 if(lobbycountdown == 0) {
                     doPregameTasks();
@@ -83,7 +81,7 @@ public class GameManager {
                 placeholder.updatePlaceholder("time", String.valueOf(lobbycountdown));
                 placeholder.updatePlaceholder("timeUnit", (lobbycountdown==1) ? "util_unit_second" : "util_unit_seconds");
 
-                doCountdown(placeholder, "end");
+                doLobbyCountdown(placeholder, "end");
                 break;
             case POSTLOBBY:
 
@@ -92,11 +90,11 @@ public class GameManager {
 
     }
 
-    private void doCountdown(LanguagePlaceholder placeholder, String state) {
+    private void doLobbyCountdown(LanguagePlaceholder placeholder, String state) {
         switch (lobbycountdown) {
             case 30:
             case 15:
-                MessageFactory.broadcastMessage("lobby_info_countdown", placeholder);
+                MessageFactory.broadcastMessage("lobby_info_countdown_" + state, placeholder);
                 break;
             default:
                 if(lobbycountdown<=10) MessageFactory.broadcastMessage("lobby_info_countdown_" + state, placeholder);
