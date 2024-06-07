@@ -1,0 +1,41 @@
+lobby_info_join: "&7Вы присоединились к  &6BedWars &7лобби!"
+lobby_info_countdown_start: "&7Игра начнётся через {time} {timeUnit}"
+lobby_info_countdown_end: "&7Игра закончится через {time} {timeUnit}"
+
+login_join_disallow: "&cВы не можете присоединиться к этому серверу прямо сейчас!"
+login_join_full: "&cЗто игра полная!"
+
+game_start_success: "&aИгра начинается!"
+game_start_fail: "&cИгра ещё не готова или уже запущена!"
+
+game_action_bed_break: "Вы сломали кровать команды {team}!"
+game_action_bed_break_own: "Вы не можете сломать вашу собственную кровать!"
+game_action_bed_broke: "Кровать команды {team} была сломана!"
+game_action_bed_broke_own: "Ваша кровать была сломана!"
+game_player_killed: "{player} был убит {killer}"
+game_player_final_killed: "{player} был уничтожен {killer}"
+
+command_no_permission: "&cУ вас нет разрешения на выполнение этой команды!"
+
+command_setup_usage: "&cНеправильное использование! Для подробной информации выполните: /setup help"
+command_setup_team_nan: "&сНеверный номер команды!"
+command_setup_bed_nan: "&сНеверные координаты кровати!"
+command_setup_generator_nan: "&cНеверный номер генератора!"
+command_setup_map_name_set: "&aИмя карты было установлено на: {mapName}"
+command_setup_team_size_set: "&aРазмер команды был установлен на {teamSize}"
+
+command_language_usage: "&cИспользование: /language <locale>"
+command_language_success: "&aВаш язык был установлен на {language}"
+command_language_missing: "&cНе удалось найти язык {language}!"
+
+util_unit_second: "секунда"
+util_unit_seconds: "секунды"
+
+color_aqua: "&bБИРЮЗОВЫЕ"
+color_red: "&cКРАСНЫЕ"
+color_white: "&fБЕЛЫЕ"
+color_yellow: "&eЖЁЛТЫЕ"
+color_green: "&aЗЕЛЁНЫЕ"
+color_blue: "&9СИНИЕ"
+color_pink: "&dРОЗАВЫЕ"
+color_gray: "&8СЕРЫЕ"
