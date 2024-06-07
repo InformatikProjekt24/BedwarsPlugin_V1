@@ -13,6 +13,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GameManager {
 
@@ -137,8 +138,13 @@ public class GameManager {
             Location shopLocation = team.getTeamShop();
             Location upgradeLocation = team.getUpgradeShop();
 
-            
+            GameShop teamShop = new GameShop(GameShopType.TEAM, shopLocation);
+            GameShop upgradeShop = new GameShop(GameShopType.UPGRADE, upgradeLocation);
+            shops.addAll(List.of(teamShop, upgradeShop));
+        }
 
+        for(GameShop shop : shops) {
+            shop.spawn();
         }
 
     }
