@@ -1,0 +1,41 @@
+lobby_info_join: "&7Du hast eine &6BedWars &7lobby betreten!"
+lobby_info_countdown_start: "&7Das Spiel beginnt in {time} {timeUnit}"
+lobby_info_countdown_end: "&7Das Spiel endet in {time} {timeUnit}"
+
+login_join_disallow: "&cDu kannst diesem Server nicht beitreten!"
+login_join_full: "&cDieses Spiel ist voll!"
+
+game_start_success: "&aDas Spiel wurde gestartet!"
+game_start_fail: "&cDas Spiel ist nicht bereit oder wurde schon gestartet!"
+
+game_action_bed_break: "Du hast das Bett von {team} zerstört!"
+game_action_bed_break_own: "Du kannst dein eigenes Bett nicht zerstören!"
+game_action_bed_broke: "Das Bett von Team {team} wurde zerstört!"
+game_action_bed_broke_own: "Dein Bett wurde zerstört!"
+game_player_killed: "{player} wurde von {killer} getötet"
+game_player_final_killed: "{player} wurde von {killer} eliminiert"
+
+command_no_permission: "&cDu hast nicht die Berechtigungen um diesen Befehl zu nutzen!"
+
+command_setup_usage: "&cFalsche Nutzung! Führe /setup help für mehr Details aus"
+command_setup_team_nan: "&cUngültige Teamnummer!"
+command_setup_bed_nan: "&cUngültige Bettkoordinaten!"
+command_setup_generator_nan: "&cUngültige Generatornummer!"
+command_setup_map_name_set: "&aName der Map wurde auf {mapName} gesetzt"
+command_setup_team_size_set: "&aTeamgröße wurde auf {teamSize} gesetzt"
+
+command_language_usage: "&cNutzung: /language <locale>"
+command_language_success: "&aDeine Sprache ist jetzt {language}"
+command_language_missing: "&cDie Sprache {language} konnte nicht gefunden werden!"
+
+util_unit_second: "Sekunde"
+util_unit_seconds: "Sekunden"
+
+color_aqua: "&bAQUA"
+color_red: "&cRED"
+color_white: "&fWHITE"
+color_yellow: "&eYELLOW"
+color_green: "&aGREEN"
+color_blue: "&9BLUE"
+color_pink: "&dPINK"
+color_gray: "&8GRAY"
