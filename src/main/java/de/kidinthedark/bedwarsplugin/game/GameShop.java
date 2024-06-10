@@ -2,13 +2,16 @@ package de.kidinthedark.bedwarsplugin.game;
 
 import de.kidinthedark.bedwarsplugin.BedwarsPlugin;
 import net.kyori.adventure.text.Component;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 public class GameShop {
@@ -26,7 +29,17 @@ public class GameShop {
     public void handleInteract(Player p) {
 
         if(gameShopType.equals(GameShopType.TEAM)) {
-            //TODO open item shop inventory
+
+            Inventory inv = Bukkit.createInventory(null, 6*9, "Team Shop");
+
+            for (int i = 0; i < inv.getSize(); i++) inv.setItem(i, ItemUtils.getItem(Material.GRAY_STAINED_GLASS_PANE, "", null, 7, 1));
+
+            for (GameShopCategory cat : GameShopCategory.values()) {
+                inv.setItem(cat.getSlot(), ItemUtils.getItem(cat.getMaterial(), cat.getName(), cat.getLore(), 1, 1));
+            }
+
+            p.openInventory(inv);
+
         } else if (gameShopType.equals(GameShopType.UPGRADE)) {
             //TODO open upgrade shop inventory
         }
