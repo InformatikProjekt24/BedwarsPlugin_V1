@@ -16,79 +16,91 @@ import org.bukkit.inventory.ItemStack;
 
 public class GameShop {
 
-    private final GameShopType gameShopType;
-    private final Location location;
-    private Villager entity;
-    private boolean isSpawned;
+private final GameShopType gameShopType;
+private final Location location;
+private Villager entity;
+private boolean isSpawned;
 
-    public GameShop(GameShopType type, Location location) {
-        this.gameShopType = type;
-        this.location = location;
-    }
+public GameShop(GameShopType type, Location location) {
+    this.gameShopType = type;
+    this.location = location;
+}
 
-    public void handleInteract(Player p) {
+public void handleInteract(Player p) {
 
-        if(gameShopType.equals(GameShopType.TEAM)) {
+    if(gameShopType.equals(GameShopType.TEAM)) {
 
-            Inventory inv = Bukkit.createInventory(null, 6*9, "Team Shop");
+        Inventory inv = Bukkit.createInventory(null, 6*9, "Team Shop");
 
-            for (int i = 0; i < inv.getSize(); i++) inv.setItem(i, ItemUtils.getItem(Material.GRAY_STAINED_GLASS_PANE, "", null, 7, 1));
+        for (int i = 0; i < inv.getSize(); i++) inv.setItem(i, ItemUtils.getItem(Material.GRAY_STAINED_GLASS_PANE, "", null, 7, 1));
 
-            for (GameShopCategory cat : GameShopCategory.values()) {
-                inv.setItem(cat.getSlot(), ItemUtils.getItem(cat.getMaterial(), cat.getName(), cat.getLore(), 1, 1));
-            }
-
-            p.openInventory(inv);
-
-        } else if (gameShopType.equals(GameShopType.UPGRADE)) {
-            //TODO open upgrade shop inventory
+        for (GameShopCategory cat : GameShopCategory.values()) {
+            inv.setItem(cat.getSlot(), ItemUtils.getItem(cat.getMaterial(), cat.getName(), cat.getLore(), 1, 1));
         }
 
-    }
+        p.openInventory(inv);
 
-    public static void handleInventoryInteract(InventoryClickEvent e) {
+    } else if (gameShopType.equals(GameShopType.UPGRADE)) {
+        
+        Inventory inv = Bukkit.createInventory(null, 3*9, "Upgrade Shop");
 
-        e.setCancelled(true);
+        for (int i = 0; i < inv.getSize(); i++) inv.setItem(i, ItemUtils.getItem(Material.GRAY_STAINED_GLASS_PANE, "", null, 7, 1));
 
-        //TODO REPLACE TITLES
-        String itemShopTitle = "ItemShopTitle";
-        String upgradeShopTitle = "UpgradeShopTitle";
-
-        Player player = (Player) e.getWhoClicked();
-
-        if(player.getOpenInventory().title().equals(Component.text(itemShopTitle))) {
-            handleItemShop(player, e.getCurrentItem(), e.getClick());
-        } else if (player.getOpenInventory().title().equals(Component.text(upgradeShopTitle))) {
-            handleUpgradeShop(player, e.getCurrentItem(), e.getClick());
+        for (UpgradeShopCategory cat : UpgradeShopCategory.values()) {
+            inv.setItem(cat.getSlot(), ItemUtils.getItem(cat.getMaterial(), cat.getName(), cat.getLore(), 1, 1));
         }
 
+        p.openInventory(inv);
     }
 
-    private static void handleItemShop(Player player, ItemStack clickedItem, ClickType clickType) {
-        if(clickType == ClickType.LEFT) {
-            //TODO BUY
-        } else if(clickType == ClickType.SHIFT_LEFT) {
-            //TODO buy stack or max possible (whichever is smaller)
-        }
+}
+
+public static void handleInventoryInteract(InventoryClickEvent e) {
+
+    e.setCancelled(true);
+
+    String itemShopTitle = "Team Shop";
+    String upgradeShopTitle = "Upgrade Shop";
+
+    Player player = (Player) e.getWhoClicked();
+
+    if(player.getOpenInventory().title().equals(Component.text(itemShopTitle))) {
+        handleItemShop(player, e.getCurrentItem(), e.getClick());
+    } else if (player.getOpenInventory().title().equals(Component.text(upgradeShopTitle))) {
+        handleUpgradeShop(player, e.getCurrentItem(), e.getClick());
     }
 
-    private static void handleUpgradeShop(Player player, ItemStack clickedItem, ClickType clickType) {
-        if(clickType == ClickType.LEFT) {
-            //TODO BUY
-        } else if(clickType == ClickType.SHIFT_LEFT) {
-            //TODO buy stack or max possible (whichever is smaller)
-        }
-    }
+}
 
-    public void spawn() {
-        entity = (Villager) BedwarsPlugin.instance.mapManager.getLoadedMap().getWorld().spawnEntity(location, EntityType.VILLAGER);
-        entity.setSilent(true);
-        entity.setInvulnerable(true);
-        entity.setNoPhysics(true);
-        entity.setAI(false);
+private static void handleItemShop(Player player, ItemStack clickedItem, ClickType clickType) {
+    if(clickType == ClickType.LEFT) {
+        /*if (player.getOpenInventory().getItem(clickedItem).getSlot() < 9) {
+            //todo: change to according item shop
+        } else {
+            //todo: buy
+        }*/
+    } else if(clickType == ClickType.SHIFT_LEFT) {
+        //TODO buy stack or max possible (whichever is smaller)
     }
+}
 
-    public Entity getEntity() {
-        return entity;
+private static void handleUpgradeShop(Player player, ItemStack clickedItem, ClickType clickType) {
+    if(clickType == ClickType.LEFT) {
+        //TODO BUY
+    } else if(clickType == ClickType.SHIFT_LEFT) {
+        //TODO buy stack or max possible (whichever is smaller)
     }
+}
+
+public void spawn() {
+    entity = (Villager) BedwarsPlugin.instance.mapManager.getLoadedMap().getWorld().spawnEntity(location, EntityType.VILLAGER);
+    entity.setSilent(true);
+    entity.setInvulnerable(true);
+    entity.setNoPhysics(true);
+    entity.setAI(false);
+}
+
+public Entity getEntity() {
+    return entity;
+}
 }
