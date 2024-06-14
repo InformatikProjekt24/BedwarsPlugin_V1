@@ -1,6 +1,10 @@
+package de.kidinthedark.bedwarsplugin.game;
+
+import org.bukkit.Material;
+
 public enum UpgradeShopCategory {
-  FORGE("Forge", Material.OVEN, 10),
-  HASTE("Haste", Material.GOLD_PICKAXE, 11),
+  FORGE("Forge", Material.FURNACE, 10),
+  HASTE("Haste", Material.GOLDEN_PICKAXE, 11),
   SHARPNESS("Sharpness", Material.IRON_SWORD, 12),
   PROTECTION("Protection", Material.IRON_CHESTPLATE, 13),
   TRAP("Trap", Material.TRIPWIRE_HOOK, 14);
