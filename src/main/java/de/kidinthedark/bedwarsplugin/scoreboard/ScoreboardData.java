@@ -1,5 +1,9 @@
 package de.kidinthedark.bedwarsplugin.scoreboard;
 
+import org.bukkit.scoreboard.DisplaySlot;
+import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.Scoreboard;
+
 import java.util.HashMap;
 
 public class ScoreboardData {
@@ -31,6 +35,13 @@ public class ScoreboardData {
             throw new ArrayIndexOutOfBoundsException("Scoreboard line " + scoreboardLine + " is greater than " + scoreboardSize);
         }
         scoreboardLines.put(scoreboardLine, value);
+    }
+
+    public Scoreboard renderScoreboard(Scoreboard scoreboard) {
+
+        Objective objective = scoreboard.getObjective("gameobject");
+
+        return scoreboard;
     }
 
 }

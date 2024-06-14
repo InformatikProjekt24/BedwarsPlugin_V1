@@ -7,7 +7,6 @@
 plugins {
     //noinspection GroovyAssignabilityCheck
     id 'java'
-    id("io.papermc.paperweight.userdev") version "1.7.1"
 }
 
 group = 'de.kidinthedark'
@@ -26,8 +25,7 @@ repositories {
 }
 
 dependencies {
-    //compileOnly("io.papermc.paper:paper-api:1.20.6-R0.1-SNAPSHOT")
-    paperweight.paperDevBundle("1.20.6-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.20.6-R0.1-SNAPSHOT")
 }
 
 def targetJavaVersion = 21
@@ -47,10 +45,6 @@ tasks.withType(JavaCompile).configureEach {
     if (targetJavaVersion >= 10 || JavaVersion.current().isJava10Compatible()) {
         options.release.set(targetJavaVersion)
     }
-}
-
-tasks.assemble {
-    dependsOn(reobfJar)
 }
 
 processResources {

@@ -2,6 +2,8 @@ package de.kidinthedark.bedwarsplugin.game;
 
 import de.kidinthedark.bedwarsplugin.BedwarsPlugin;
 import de.kidinthedark.bedwarsplugin.map.Generator;
+import de.kidinthedark.bedwarsplugin.scoreboard.GameScoreboard;
+import de.kidinthedark.bedwarsplugin.scoreboard.ScoreboardData;
 import de.kidinthedark.bedwarsplugin.util.ConfigVars;
 import de.kidinthedark.bedwarsplugin.util.LanguagePlaceholder;
 import de.kidinthedark.bedwarsplugin.util.MessageFactory;
@@ -26,6 +28,8 @@ public class GameManager {
     private boolean lobby_wait;
 
     private Game game;
+    private GameScoreboard scoreboard;
+    private volatile ScoreboardData scoreboardData;
 
     private final ArrayList<Block> placedBlocks;
 
@@ -35,6 +39,8 @@ public class GameManager {
         lobbycountdown = ConfigVars.lobbycountdown;
         pregamecountdown = ConfigVars.pregamecountdown;
         postgamecountdown = ConfigVars.postgamecountdown;
+        scoreboard = new GameScoreboard();
+        scoreboardData = new ScoreboardData(ConfigVars.scoreboardLines, ConfigVars.scoreboardTitle);
         placedBlocks = new ArrayList<>();
         shops = new ArrayList<>();
         busy = false;
@@ -89,6 +95,10 @@ public class GameManager {
                 break;
         }
 
+    }
+
+    public void asyncTick() {
+        scoreboard.sendScoreboard();
     }
 
     private void doLobbyCountdown(LanguagePlaceholder placeholder, String state) {
@@ -177,7 +187,7 @@ public class GameManager {
         for(Generator generator : BedwarsPlugin.instance.mapManager.getLoadedMap().generators()) {
             generator.tick();
         }
-
+        scoreboard.updateData(scoreboardData);
     }
 
     public void handleBlockPlace(BlockPlaceEvent event) {
