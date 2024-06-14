@@ -32,4 +32,8 @@ public class ConfigVars {
     public static int pregamecountdown;
     public static int postgamecountdown;
 
+    //TODO READ CONFIG FILE
+    public static int scoreboardLines;
+    public static String scoreboardTitle;
+
 }
