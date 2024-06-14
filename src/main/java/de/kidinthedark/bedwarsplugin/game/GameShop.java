@@ -102,5 +102,6 @@ public void spawn() {
 
 public Entity getEntity() {
     return entity;
+    //commit du hs
 }
 }
